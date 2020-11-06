@@ -1,7 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CpuUsage from './components/CpuUsage';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Stocks from './components/Stocks';
 
 
 
@@ -9,12 +14,16 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <CpuUsage/>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+          <Route path="/cpu-usage">
+            <CpuUsage/>
+          </Route>
+          <Route path="/">
+            <Stocks />
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 
