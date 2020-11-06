@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import io from 'socket.io-client';
+
+
+const socket = io('http://localhost:3001', {
+  transports: ['websocket', 'polling']
+})
 
 function App() {
+  const [data, setData] = useState<any>([])
+
+  useEffect(() => {
+    socket.on('cpu', (cpuPercent: any) => {
+      setData((currentData: any) => [...currentData, cpuPercent]);
+    })
+    return () => {
+      socket.close();
+    }
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
