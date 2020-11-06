@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { AgChartsReact } from 'ag-charts-react';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 import logo from './logo.svg';
 import './App.css';
-
 
 const socket = io('http://localhost:3001', {
   transports: ['websocket', 'polling']
@@ -64,7 +66,7 @@ const originalData = [
   { date: new Date(2019, 11, 30), petrol: 124.96, diesel: 130.54 },
 ];
 
-const  originalOptions = {
+const originalOptions = {
   container: document.querySelector('#myChart'),
   autoSize: true,
   data: [],
@@ -122,41 +124,41 @@ function App() {
   const [data, setData] = useState<any>([]);
   const [options, setOptions] = useState<any>(originalOptions);
 
-  
 
 
-//   const options = {
-//     data,
-//     // series: [{
-//     //     xKey: 'name',
-//     //     yKey: 'value',
-//     // }],
-//     series: [
-//       {
-//         type: 'line',
-//         xKey: 'name',
-//         yKey: 'value',
-//         stroke: '#01c185',
-//         marker: {
-//           stroke: '#01c185',
-//           fill: '#01c185',
-//         },
-//       },
-//     ]
-// };
+
+  //   const options = {
+  //     data,
+  //     // series: [{
+  //     //     xKey: 'name',
+  //     //     yKey: 'value',
+  //     // }],
+  //     series: [
+  //       {
+  //         type: 'line',
+  //         xKey: 'name',
+  //         yKey: 'value',
+  //         stroke: '#01c185',
+  //         marker: {
+  //           stroke: '#01c185',
+  //           fill: '#01c185',
+  //         },
+  //       },
+  //     ]
+  // };
 
 
-let percents: never[] = [];
+  let percents: never[] = [];
 
   useEffect(() => {
     socket.on('cpu', (cpuPercent: any) => {
       console.log(cpuPercent);
-      // setData((currentData: any) => [...currentData, cpuPercent]);
-      setOptions((currentOptions: any) => {
-        console.log(currentOptions);
-      
-        return ({...currentOptions, data: [...currentOptions.data, cpuPercent]})
-      })
+      setData((currentData: any) => [...currentData, cpuPercent]);
+      // setOptions((currentOptions: any) => {
+      //   console.log(currentOptions);
+
+      //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
+      // })
       // options = {...options, data: [...percents, cpuPercent]};
     })
 
@@ -169,18 +171,18 @@ let percents: never[] = [];
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <AgChartsReact options={options} />
+        {/* <AgChartsReact options={options} /> */}
+        <LineChart width={730} height={250} data={data}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis dataKey="name" />
+          <YAxis />
+          {/* <Tooltip /> */}
+          {/* <Legend /> */}
+          {/* <Line type="monotone" dataKey="value" stroke="#8884d8" /> */}
+          <Line dataKey="value"/>
+          {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+        </LineChart>
       </header>
     </div>
   );

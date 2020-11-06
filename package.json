@@ -11,6 +11,9 @@
   "scripts": {
     "start": "npm run start:client & npm run start:server",
     "start:client": "cd client && npm run start",
-    "start:server": "node server.js"
+    "start:server": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
