@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import Stocks from './components/Stocks';
+import Navbar from './components/Navbar';
 
 
 
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar/>
       <Switch>
           <Route path="/cpu-usage">
             <CpuUsage/>
