@@ -1,75 +1,71 @@
-import React from 'react'
+import React from "react";
 import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 interface Props {
-    children: any
+  children: any;
 }
 
 const MenuItems: React.FC<Props> = ({ children }) => (
-    <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-        <Link to={'/' + children}>
-        {children}
-        </Link>
-    </Text>
+  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+    <Link to={"/" + children}>{children}</Link>
+  </Text>
 );
 
 const Navbar: React.FC = (props) => {
-    const [show, setShow] = React.useState(false);
-    const handleToggle = () => setShow(!show);
+  const [show, setShow] = React.useState(false);
+  const handleToggle = () => setShow(!show);
 
-    return (
-        <Flex
-            as="nav"
-            align="center"
-            justify="space-between"
-            wrap="wrap"
-            padding="1.5rem"
-            bg="teal.500"
-            color="white"
-            {...props}
+  return (
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      padding="1.5rem"
+      bg="teal.500"
+      color="white"
+      {...props}
+    >
+      <Flex align="center" mr={5}>
+        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+          <Link to="/">Chakra UI</Link>
+        </Heading>
+      </Flex>
+
+      <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+        <svg
+          fill="white"
+          width="12px"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
         >
-            <Flex align="center" mr={5}>
-                <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
-                    <Link to="/">
-                        Chakra UI
-                    </Link>
-                </Heading>
-            </Flex>
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </Box>
 
-            <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
-                <svg
-                    fill="white"
-                    width="12px"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                </svg>
-            </Box>
+      <Box
+        display={{ sm: show ? "block" : "none", md: "flex" }}
+        width={{ sm: "full", md: "auto" }}
+        alignItems="center"
+        flexGrow={1}
+      >
+        {/* <MenuItems>Docs</MenuItems> */}
+        {/* <MenuItems>Examples</MenuItems> */}
+        <MenuItems>cpu-usage</MenuItems>
+      </Box>
 
-            <Box
-                display={{ sm: show ? "block" : "none", md: "flex" }}
-                width={{ sm: "full", md: "auto" }}
-                alignItems="center"
-                flexGrow={1}
-            >
-                {/* <MenuItems>Docs</MenuItems> */}
-                {/* <MenuItems>Examples</MenuItems> */}
-                <MenuItems>cpu-usage</MenuItems>
-            </Box>
-
-            <Box
-                display={{ sm: show ? "block" : "none", md: "block" }}
-                mt={{ base: 4, md: 0 }}
-            >
-                <Button bg="transparent" border="1px">
-                    Create account
+      <Box
+        display={{ sm: show ? "block" : "none", md: "block" }}
+        mt={{ base: 4, md: 0 }}
+      >
+        <Button bg="transparent" border="1px">
+          Create account
         </Button>
-            </Box>
-        </Flex>
-    );
-}
+      </Box>
+    </Flex>
+  );
+};
 
 export default Navbar;

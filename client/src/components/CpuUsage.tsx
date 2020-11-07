@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+// eslint-disable-next-line no-use-before-define
+import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { AgChartsReact } from 'ag-charts-react';
 import {
-  LineChart, Line, XAxis, YAxis
+  LineChart, Line, XAxis, YAxis,
 } from 'recharts';
 
-interface Props {
-
-}
+// interface Props {}
 
 const socket = io('http://localhost:3001', {
-  transports: ['websocket', 'polling']
-})
+  transports: ['websocket', 'polling'],
+});
 
 const originalData = [
   { date: new Date(2019, 0, 7), petrol: 120.27, diesel: 130.33 },
@@ -122,40 +121,44 @@ const originalOptions = {
   ],
 };
 
+const CpuUsage: React.FC = () => {
+  const [data, setData] = useState<any>([]);
+  const [options, setOptions] = useState<any>(originalOptions);
 
-const CpuUsage: React.FC<Props> = () => {
-    const [data, setData] = useState<any>([]);
-    const [options, setOptions] = useState<any>(originalOptions);
+  useEffect(() => {
+    socket.on('cpu', (cpuPercent: any) => {
+      console.log(cpuPercent);
+      setData((currentData: any) => [...currentData, cpuPercent]);
+      // setOptions((currentOptions: any) => {
+      //   console.log(currentOptions);
 
-    useEffect(() => {
-        socket.on('cpu', (cpuPercent: any) => {
-          console.log(cpuPercent);
-          setData((currentData: any) => [...currentData, cpuPercent]);
-          // setOptions((currentOptions: any) => {
-          //   console.log(currentOptions);
-    
-          //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
-          // })
-          // options = {...options, data: [...percents, cpuPercent]};
-        })
-    
-        return () => {
-          socket.close();
-        }
-      }, [])
-    
+      //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
+      // })
+      // options = {...options, data: [...percents, cpuPercent]};
+    });
 
-    return (
-        <>
-            {/* <AgChartsReact options={options} /> */}
-            <LineChart width={730} height={250} data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Line dataKey="petrol"/>
-            </LineChart>
-        </>
-    );
-}
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+  return (
+    <>
+      {/* <AgChartsReact options={options} /> */}
+      <LineChart
+        width={730}
+        height={250}
+        data={data}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+      >
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Line dataKey="petrol" />
+      </LineChart>
+    </>
+  );
+};
 
 export default CpuUsage;
