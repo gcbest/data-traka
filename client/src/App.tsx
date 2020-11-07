@@ -19,7 +19,7 @@ function App() {
       <Navbar/>
       <Switch>
           <Route path="/cpu-usage">
-            <CpuUsage/>
+            <CpuUsage />
           </Route>
           <Route path="/">
             <Stocks />

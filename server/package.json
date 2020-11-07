@@ -1,0 +1,17 @@
+{
+  "name": "data-traka",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Godfrey Best <godfrey.c.best@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "os-utils": "^0.0.14",
+    "socket.io": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

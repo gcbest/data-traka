@@ -1,11 +1,37 @@
-const server = require('http').createServer();
+const axios = require('axios');
+const express = require('express');
+// const server = require('http').createServer();
+const cors = require('cors');
 const os = require('os-utils');
+// eslint-disable-next-line import/order
+const { getAVUrl } = require('./utils');
 
-const io = require('socket.io')(server, {
-        transports: ['websocket', 'polling'],
+const app = express();
+const http = require('http').Server(app);
+// const io = require('socket.io')(http, {
+//         transports: ['websocket', 'polling'],
+// });
+
+// eslint-disable-next-line import/order
+// const io = require('socket.io')(server, {
+//         transports: ['websocket', 'polling'],
+// });
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.get('/api/stock', async (req, res) => {
+        console.log(req.query);
+        const { symbol } = req.query;
+        const queryUrl = getAVUrl(symbol);
+        console.log(queryUrl);
+        const result = await axios.get(queryUrl);
+        console.log(result.data);
+        res.json(result.data);
 });
 
-let tick = 0;
+const tick = 0;
 const clients = {};
 
 const data = [
@@ -63,26 +89,29 @@ const data = [
         { date: new Date(2019, 11, 30), petrol: 124.96, diesel: 130.54 },
 ];
 
-io.on('connection', client => {
-        clients[client.id] = client;
+// io.on('connection', client => {
+//         clients[client.id] = client;
 
-        setInterval(() => {
-                tick += 1;
-                if (tick > data.length - 1) tick = 0;
+//         setInterval(() => {
+//                 tick += 1;
+//                 if (tick > data.length - 1) tick = 0;
 
-                os.cpuUsage(cpuPercent => {
-                        // client.emit('cpu', {
-                        //         name: tick,
-                        //         value: cpuPercent,
-                        // });
-                        // client.emit('cpu', data[tick]);
-                        client.emit('cpu', { name: tick, petrol: data[tick].petrol });
-                });
-        }, 1000);
+//                 os.cpuUsage(cpuPercent => {
+//                         // client.emit('cpu', {
+//                         //         name: tick,
+//                         //         value: cpuPercent,
+//                         // });
+//                         // client.emit('cpu', data[tick]);
+//                         client.emit('cpu', { name: tick, petrol: data[tick].petrol });
+//                 });
+//         }, 1000);
 
-        io.on('disconnect', function() {
-                delete clients[client.id];
-        });
+//         io.on('disconnect', function() {
+//                 delete clients[client.id];
+//         });
+// });
+
+// server.listen(3001);
+const server = http.listen(3001, () => {
+        console.log('server is running on port', server.address().port);
 });
-
-server.listen(3001);
