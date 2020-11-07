@@ -9,9 +9,9 @@ interface Props {
 
 }
 
-// const socket = io('http://localhost:3001', {
-//   transports: ['websocket', 'polling']
-// })
+const socket = io('http://localhost:3001', {
+  transports: ['websocket', 'polling']
+})
 
 const originalData = [
   { date: new Date(2019, 0, 7), petrol: 120.27, diesel: 130.33 },
@@ -128,20 +128,20 @@ const CpuUsage: React.FC<Props> = () => {
     const [options, setOptions] = useState<any>(originalOptions);
 
     useEffect(() => {
-        // socket.on('cpu', (cpuPercent: any) => {
-        //   console.log(cpuPercent);
-        //   setData((currentData: any) => [...currentData, cpuPercent]);
-        //   // setOptions((currentOptions: any) => {
-        //   //   console.log(currentOptions);
+        socket.on('cpu', (cpuPercent: any) => {
+          console.log(cpuPercent);
+          setData((currentData: any) => [...currentData, cpuPercent]);
+          // setOptions((currentOptions: any) => {
+          //   console.log(currentOptions);
     
-        //   //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
-        //   // })
-        //   // options = {...options, data: [...percents, cpuPercent]};
-        // })
+          //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
+          // })
+          // options = {...options, data: [...percents, cpuPercent]};
+        })
     
-        // return () => {
-        //   socket.close();
-        // }
+        return () => {
+          socket.close();
+        }
       }, [])
     
 
