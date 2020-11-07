@@ -1,30 +1,26 @@
 import React from 'react';
 import './App.css';
-import CpuUsage from './components/CpuUsage';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
+import CpuUsage from './components/CpuUsage';
 import Stocks from './components/Stocks';
 import Navbar from './components/Navbar';
 
-
-
-function App() {
-
-
+function App(): React.ReactElement {
   return (
     <Router>
-      <Navbar/>
+      <Navbar />
       <Switch>
-          <Route path="/cpu-usage">
-            <CpuUsage />
-          </Route>
-          <Route path="/">
-            <Stocks />
-          </Route>
-        </Switch>
+        <Route path="/cpu-usage">
+          <CpuUsage />
+        </Route>
+        <Route path="/">
+          <Stocks />
+        </Route>
+      </Switch>
     </Router>
   );
 }
