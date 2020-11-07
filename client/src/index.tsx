@@ -1,6 +1,8 @@
+/* eslint-disable import/extensions */
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider } from '@chakra-ui/core';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,7 +13,7 @@ ReactDOM.render(
       <App />
     </ChakraProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
