@@ -1,15 +1,12 @@
-import { Box } from "@chakra-ui/core";
-import React from "react";
+// eslint-disable-next-line no-use-before-define
+import React from 'react';
+import { Box } from '@chakra-ui/core';
 
-interface Props {}
-
-const PreviewDetails: React.FC<Props> = () => {
-  return (
-    <Box>
-      <p className="name"></p>
-      <p className="price"></p>
-    </Box>
-  );
-};
+const PreviewDetails: React.FC = () => (
+  <Box>
+    <p className="name" />
+    <p className="price" />
+  </Box>
+);
 
 export default PreviewDetails;

@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Button, FormLabel, Input,
 } from '@chakra-ui/core';
+import { queryStock } from '../store/actionCreators';
 
 const Stocks: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
@@ -14,9 +15,7 @@ const Stocks: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    fetch(`/api/stock?symbol=${value}`)
-      .then((res) => res.json())
-      .then((res) => (res));
+    queryStock(value);
   };
 
   return (

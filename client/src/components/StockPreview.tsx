@@ -1,16 +1,12 @@
-import { Box } from "@chakra-ui/core";
-import React from "react";
-import PreviewDetails from "./PreviewDetails";
+import { Box } from '@chakra-ui/core';
+import React from 'react';
+import PreviewDetails from './PreviewDetails';
 
-interface Props {}
-
-const StockPreview: React.FC<Props> = () => {
-  return (
-    <Box borderWidth="1px" borderRadius="lg" display="flex">
-      <img src="" alt="" />
-      <PreviewDetails />
-    </Box>
-  );
-};
+const StockPreview: React.FC = () => (
+  <Box borderWidth="1px" borderRadius="lg" display="flex">
+    <img src="https://i.stack.imgur.com/veUID.png" alt="placeholder chart" />
+    <PreviewDetails />
+  </Box>
+);
 
 export default StockPreview;
