@@ -1,6 +1,9 @@
-import React from "react";
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import React from 'react';
+import {
+  Box, Heading, Flex, Text, Button,
+} from '@chakra-ui/core';
+import { Link } from 'react-router-dom';
 
 interface Props {
   children: any;
@@ -8,7 +11,7 @@ interface Props {
 
 const MenuItems: React.FC<Props> = ({ children }) => (
   <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    <Link to={"/" + children}>{children}</Link>
+    <Link to={`/${children}`}>{children}</Link>
   </Text>
 );
 
@@ -25,15 +28,16 @@ const Navbar: React.FC = (props) => {
       padding="1.5rem"
       bg="teal.500"
       color="white"
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+        <Heading as="h1" size="lg" letterSpacing="-.1rem">
           <Link to="/">Chakra UI</Link>
         </Heading>
       </Flex>
 
-      <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+      <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
         <svg
           fill="white"
           width="12px"
@@ -46,8 +50,8 @@ const Navbar: React.FC = (props) => {
       </Box>
 
       <Box
-        display={{ sm: show ? "block" : "none", md: "flex" }}
-        width={{ sm: "full", md: "auto" }}
+        display={{ sm: show ? 'block' : 'none', md: 'flex' }}
+        width={{ sm: 'full', md: 'auto' }}
         alignItems="center"
         flexGrow={1}
       >
@@ -57,7 +61,7 @@ const Navbar: React.FC = (props) => {
       </Box>
 
       <Box
-        display={{ sm: show ? "block" : "none", md: "block" }}
+        display={{ sm: show ? 'block' : 'none', md: 'block' }}
         mt={{ base: 4, md: 0 }}
       >
         <Button bg="transparent" border="1px">

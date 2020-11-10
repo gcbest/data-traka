@@ -1,8 +1,8 @@
-import { QUERY_STOCK } from './actionTypes';
+import { FETCH_STOCK_SUCCESS } from './actionTypes';
 
 export default function reducer(state: IState, { type, payload }: IAction): IState {
   switch (type) {
-    case QUERY_STOCK:
+    case FETCH_STOCK_SUCCESS:
       return {
         ...state,
         stockPreview: payload,
