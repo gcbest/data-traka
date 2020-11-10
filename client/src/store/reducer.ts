@@ -5,7 +5,7 @@ export default function reducer(state: IState, { type, payload }: IAction): ISta
     case QUERY_STOCK:
       return {
         ...state,
-        query: payload,
+        stockPreview: payload,
       };
     default:
       return state;

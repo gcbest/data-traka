@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, QUERY_STOCK } from './actionTypes';
+import { FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS } from './actionTypes';
 
 export function fetchStockRequest(): IAction {
   return {

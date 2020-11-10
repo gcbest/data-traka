@@ -1,5 +1,6 @@
-import { Box } from '@chakra-ui/core';
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 import PreviewDetails from './PreviewDetails';
 
 const StockPreview: React.FC = () => (

@@ -12,6 +12,6 @@ interface IAction {
 interface IState {
   loading: boolean
   error: string
-  stockPreview: IStockPreview
+  stockPreview?: IStockPreview
   saved: IStockPreview[]
 }
