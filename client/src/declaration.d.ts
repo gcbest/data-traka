@@ -1,10 +1,16 @@
-type ActionType = QUERY_SYMBOL;
+type ActionType = 'QUERY_STOCK'| 'FETCH_STOCK_REQUEST'| 'FETCH_STOCK_SUCCESS'| 'FETCH_STOCK_ERROR'| 'ADD_STOCK_TO_LIST'
 
 interface IStockPreview {
-  symbol: string
-  name: string
-  high: number
-  low: number
+  Symbol: string
+  Name: string
+  '52WeekHigh': number
+  '52WeekLow': number
+}
+
+interface IStockDetails extends IStockPreview {
+  Exchange: string
+  Sector: string
+  Country: string
 }
 
 interface IAction {

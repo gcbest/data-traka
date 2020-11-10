@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { FETCH_STOCK_SUCCESS } from './actionTypes';
+import { ADD_STOCK_TO_LIST, FETCH_STOCK_SUCCESS } from './actionTypes';
 
 const initialState = {
   loading: false,
@@ -15,6 +15,15 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
         ...state,
         stockPreview: payload,
       };
+
+    case ADD_STOCK_TO_LIST:
+      if (!payload) return state;
+      alert(`${payload.Name} added to list`);
+      return {
+        ...state,
+        saved: [...state.saved, payload],
+      };
+
     default:
       return state;
   }

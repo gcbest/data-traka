@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS } from './actionTypes';
+import { ADD_STOCK_TO_LIST, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS } from './actionTypes';
 
 export function fetchStockRequest(): IAction {
   return {
@@ -21,14 +21,21 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
       .then((res) => res.json())
       .then((res) => {
         // eslint-disable-next-line no-debugger
-        debugger;
+        const { Symbol, Name } = res;
         const previewData: IStockPreview = {
-          symbol: res.Symbol,
-          name: res.Name,
-          high: res['52WeekHigh'],
-          low: res['52WeekLow'],
+          Symbol,
+          Name,
+          '52WeekHigh': res['52WeekHigh'],
+          '52WeekLow': res['52WeekLow'],
         };
         dispatch(fetchStockSuccess(previewData));
       });
+  };
+}
+
+export function saveStock(stockDetails: IStockPreview): IAction {
+  return {
+    type: ADD_STOCK_TO_LIST,
+    payload: stockDetails,
   };
 }
