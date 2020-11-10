@@ -2,6 +2,9 @@ type ActionType = QUERY_SYMBOL;
 
 interface IStockPreview {
   symbol: string
+  name: string
+  high: number
+  low: number
 }
 
 interface IAction {
@@ -12,6 +15,6 @@ interface IAction {
 interface IState {
   loading: boolean
   error: string
-  stockPreview?: IStockPreview
+  stockPreview?: IStockPreview | undefined
   saved: IStockPreview[]
 }

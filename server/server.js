@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getAVUrl } = require('./utils');
+const { getOverviewUrl } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/api/stock', async (req, res) => {
         console.log(req.query);
         const { symbol } = req.query;
-        const queryUrl = getAVUrl(symbol);
+        const queryUrl = getOverviewUrl(symbol);
         console.log(queryUrl);
         const result = await axios.get(queryUrl);
         console.log(result.data);

@@ -2,9 +2,12 @@ import React from 'react';
 import {
   Button, FormLabel, Input,
 } from '@chakra-ui/core';
+import { useDispatch } from 'react-redux';
 import { queryStock } from '../store/actionCreators';
+import PreviewDetails from './PreviewDetails';
 
 const Stocks: React.FC = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState<string>('');
   // eslint-disable-next-line no-trailing-spaces
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => 
@@ -14,7 +17,7 @@ const Stocks: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    queryStock(value);
+    dispatch(queryStock(value));
   };
 
   return (
@@ -26,9 +29,10 @@ const Stocks: React.FC = () => {
         value={value}
         onChange={handleChange}
       />
-      <Button colorScheme="blue" type="button">
+      <Button colorScheme="blue" type="submit">
         Button
       </Button>
+      <PreviewDetails />
     </form>
   );
 };

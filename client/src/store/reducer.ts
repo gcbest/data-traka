@@ -1,6 +1,14 @@
+import { Reducer } from 'redux';
 import { FETCH_STOCK_SUCCESS } from './actionTypes';
 
-export default function reducer(state: IState, { type, payload }: IAction): IState {
+const initialState = {
+  loading: false,
+  error: '',
+  stockPreview: undefined,
+  saved: [],
+};
+
+const reducer: Reducer = (state: IState = initialState, { type, payload }: IAction): IState => {
   switch (type) {
     case FETCH_STOCK_SUCCESS:
       return {
@@ -10,4 +18,6 @@ export default function reducer(state: IState, { type, payload }: IAction): ISta
     default:
       return state;
   }
-}
+};
+
+export default reducer;

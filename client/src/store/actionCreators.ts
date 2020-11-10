@@ -20,7 +20,15 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
     return fetch(`/api/stock?symbol=${symbol}`)
       .then((res) => res.json())
       .then((res) => {
-        dispatch(fetchStockSuccess(res));
+        // eslint-disable-next-line no-debugger
+        debugger;
+        const previewData: IStockPreview = {
+          symbol: res.Symbol,
+          name: res.Name,
+          high: res['52WeekHigh'],
+          low: res['52WeekLow'],
+        };
+        dispatch(fetchStockSuccess(previewData));
       });
   };
 }

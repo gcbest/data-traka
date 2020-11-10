@@ -15,7 +15,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [2, { devDependencies: ['**/test.tsx', '**/test.ts'] }],
     '@typescript-eslint/indent': [2, 2],
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['warning'],
+    '@typescript-eslint/no-use-before-define': ['error'],
     'import/extensions': [1, 'never'],
     'max-len': [0, { code: 120 }],
   },
