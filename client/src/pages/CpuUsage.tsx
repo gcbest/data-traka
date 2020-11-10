@@ -155,7 +155,7 @@ const CpuUsage: React.FC = () => {
       >
         <XAxis dataKey="name" />
         <YAxis />
-        <Line dataKey="petrol" />
+        <Line dataKey="value" />
       </LineChart>
     </>
   );

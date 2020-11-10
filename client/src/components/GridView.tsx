@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 
-// eslint-disable-next-line import/no-unresolved
-// import 'ag-grid-enterprise';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { useSelector } from 'react-redux';

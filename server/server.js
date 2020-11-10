@@ -94,15 +94,15 @@ io.on('connection', client => {
 
         setInterval(() => {
                 tick += 1;
-                if (tick > data.length - 1) tick = 0;
+                // if (tick > data.length - 1) tick = 0;
 
                 os.cpuUsage(cpuPercent => {
-                        // client.emit('cpu', {
-                        //         name: tick,
-                        //         value: cpuPercent,
-                        // });
+                        client.emit('cpu', {
+                                name: tick,
+                                value: cpuPercent,
+                        });
                         // client.emit('cpu', data[tick]);
-                        client.emit('cpu', { name: tick, petrol: data[tick].petrol });
+                        // client.emit('cpu', { name: tick, petrol: data[tick].petrol });
                 });
         }, 1000);
 
