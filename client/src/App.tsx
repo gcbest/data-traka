@@ -6,8 +6,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import CpuUsage from './components/CpuUsage';
-import Stocks from './components/Stocks';
+import CpuUsage from './pages/CpuUsage';
+import Stocks from './pages/Stocks';
 import Navbar from './components/Navbar';
 
 function App(): React.ReactElement {

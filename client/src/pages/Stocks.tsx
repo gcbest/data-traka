@@ -4,7 +4,8 @@ import {
 } from '@chakra-ui/core';
 import { useDispatch } from 'react-redux';
 import { queryStock } from '../store/actionCreators';
-import PreviewDetails from './PreviewDetails';
+import PreviewDetails from '../components/PreviewDetails';
+import GridView from '../components/GridView';
 
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Stocks: React.FC = () => {
         Button
       </Button>
       <PreviewDetails />
+      <GridView />
     </form>
   );
 };
