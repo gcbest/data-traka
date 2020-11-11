@@ -3,6 +3,7 @@ type ActionType = 'QUERY_STOCK'| 'FETCH_STOCK_REQUEST'| 'FETCH_STOCK_SUCCESS'| '
 interface IStockPreview {
   Symbol: string
   Name: string
+  Currency: string
   '52WeekHigh': number
   '52WeekLow': number
 }

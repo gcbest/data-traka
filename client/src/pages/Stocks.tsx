@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  Alert,
+  AlertIcon,
   Button, FormLabel, Input,
 } from '@chakra-ui/core';
 import { useDispatch } from 'react-redux';
@@ -10,13 +12,9 @@ import GridView from '../components/GridView';
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState<string>('');
-  // eslint-disable-next-line no-trailing-spaces
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => 
-    // eslint-disable-next-line implicit-arrow-linebreak
-    setValue(event.target.value.toUpperCase());
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value.toUpperCase());
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     dispatch(queryStock(value));
   };
@@ -33,6 +31,17 @@ const Stocks: React.FC = () => {
       <Button colorScheme="blue" type="submit">
         Button
       </Button>
+      {/* TODO: add alert message */}
+      {/* {
+        successfulAdd
+        && (
+          <Alert status="success">
+            <AlertIcon />
+            `${payload.Name} added to list`
+          </Alert>
+        )
+      } */}
+
       <PreviewDetails />
       <GridView />
     </form>

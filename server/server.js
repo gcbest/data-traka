@@ -1,10 +1,12 @@
+require('dotenv').config({ path: '../.env' });
+
 const axios = require('axios');
 const express = require('express');
 // const server = require('http').createServer();
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getOverviewUrl } = require('./utils');
+const { getOverviewUrl, getSwopUrl } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
@@ -29,6 +31,24 @@ app.get('/api/stock', async (req, res) => {
         const result = await axios.get(queryUrl);
         console.log(result.data);
         res.json(result.data);
+});
+
+app.get('/api/currency', async (req, res) => {
+        const { from_currency, to_currency } = req.params;
+        const queryUrl = getSwopUrl();
+        const query = `query LatestEuro {
+                latest(baseCurrency: "EUR", quoteCurrencies: ["USD", "JPY"]) {
+                  date
+                  baseCurrency
+                  quoteCurrency
+                  quote
+                }
+              }`;
+        console.log(queryUrl);
+        const result = await axios.post(queryUrl, { query });
+        // res.json(result);
+        console.log(result.data.data.latest);
+        res.send('done');
 });
 
 let tick = 0;
