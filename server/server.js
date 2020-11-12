@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getOverviewUrl, getSwopUrl, convertCurrency } = require('./utils');
+const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl, convertCurrency } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
@@ -26,11 +26,15 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/api/stock', async (req, res) => {
         console.log(req.query);
         const { symbol } = req.query;
-        const queryUrl = getOverviewUrl(symbol);
-        console.log(queryUrl);
-        const result = await axios.get(queryUrl);
-        console.log(result.data);
-        res.json(result.data);
+        const overviewQueryUrl = getOverviewUrl(symbol);
+        const timeSeriesQueryUrl = getTimeSeriesUrl(symbol);
+
+        const overviewResult = await axios.get(overviewQueryUrl);
+        const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
+        console.log(overviewResult.data);
+        console.log(timeSeriesResult.data);
+        const timeSeriesData = Object.keys(timeSeriesResult.data['Time Series (1min)']).sort();
+        res.json({ ...overviewResult.data, ...timeSeriesResult.data });
 });
 
 app.get('/api/currency', async (_, res) => {

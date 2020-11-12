@@ -18,5 +18,6 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/extensions': [1, 'never'],
     'max-len': [1, { code: 120 }],
+    'react/prop-types': [0, { }],
   },
 };
