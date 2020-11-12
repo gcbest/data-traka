@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { queryStock } from '../store/actionCreators';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
+import ForexChart from '../components/ForexChart';
 
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Stocks: React.FC = () => {
 
       <PreviewDetails />
       <GridView />
+      <ForexChart />
     </form>
   );
 };
