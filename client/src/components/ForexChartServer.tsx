@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3001', {
+  transports: ['websocket', 'polling'],
+});
 
 const options: Highcharts.Options = {
   chart: {
@@ -11,11 +16,20 @@ const options: Highcharts.Options = {
       load() {
         // set up the updating of the chart each second
         const series = this.series[0];
-        setInterval(() => {
+        // setInterval(() => {
+        //   const x = new Date().getTime(); // current time
+        //   const y = Math.random();
+        //   series.addPoint([x, y], true, true);
+        // }, 1000);
+
+        socket.on('cpu', (cpuPercent: any) => {
+          console.log(cpuPercent);
+          //   const x = cpuPercent.name; // current time
+          //   const y = cpuPercent.value;
           const x = new Date().getTime(); // current time
           const y = Math.random();
           series.addPoint([x, y], true, true);
-        }, 1000);
+        });
       },
     },
   },
@@ -78,7 +92,6 @@ const options: Highcharts.Options = {
       name: 'Random data',
       data: (function () {
         // generate an array of random data
-        // defines how many points to show at one time e.g. 20
         const data = [];
         const time = new Date().getTime();
         let i;
@@ -95,15 +108,35 @@ const options: Highcharts.Options = {
   ],
 };
 
-const ForexChart: React.FC = (props: HighchartsReact.Props) => (
-  <>
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={options}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    />
-  </>
-);
+const ForexChartServer: React.FC = (props: HighchartsReact.Props) =>
+//   const [data, setData] = useState<any>([]);
 
-export default ForexChart;
+//   useEffect(() => {
+//     socket.on('cpu', (cpuPercent: any) => {
+//       console.log(cpuPercent);
+//       setData((currentData: any) => [...currentData, cpuPercent]);
+//       // setOptions((currentOptions: any) => {
+//       //   console.log(currentOptions);
+
+//       //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
+//       // })
+//       // options = {...options, data: [...percents, cpuPercent]};
+//     });
+
+//     return () => {
+//       socket.close();
+//     };
+//   }, []);
+
+  // eslint-disable-next-line implicit-arrow-linebreak
+  (
+    <>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={options}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      />
+    </>
+  );
+export default ForexChartServer;

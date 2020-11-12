@@ -9,6 +9,7 @@ import { queryStock } from '../store/actionCreators';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
 import ForexChart from '../components/ForexChart';
+import ForexChartServer from '../components/ForexChartServer';
 
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,8 @@ const Stocks: React.FC = () => {
 
       <PreviewDetails />
       <GridView />
-      <ForexChart />
+      {/* <ForexChart /> */}
+      <ForexChartServer />
     </form>
   );
 };
