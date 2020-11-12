@@ -23,7 +23,7 @@ const PreviewDetails: React.FC = () => {
       {
         previewData && (
           <>
-            <PreviewChart />
+            <PreviewChart data={previewData.timeSeriesData} />
             <p className="symbol">{previewData?.Symbol}</p>
             <p className="name">{previewData?.Name}</p>
             <p className="Currency">{previewData?.Currency}</p>

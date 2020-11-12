@@ -34,8 +34,8 @@ app.get('/api/stock', async (req, res) => {
         console.log(overviewResult.data);
         console.log(timeSeriesResult.data);
         const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
-                time: [entry[0]],
-                amount: entry[1],
+                time: entry[0],
+                amount: parseFloat(entry[1]['4. close']),
         }));
         console.log(timeSeriesData);
         res.json({ ...overviewResult.data, timeSeriesData });
