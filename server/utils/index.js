@@ -6,8 +6,26 @@ const getOverviewUrl = symbol => `${AV_BASE_URL}&symbol=${symbol}&function=OVERV
 
 const getSwopUrl = () => `${SWOP_BASE_URL}`;
 
+const getConversionRates = EurToUsd => ({
+        EurToUsd,
+        UsdToEur: 1 / EurToUsd,
+});
+
+const convertCurrency = (currency, amount, EurToUsd) => {
+        const conversionRates = getConversionRates(EurToUsd);
+        switch (currency) {
+                case 'USD':
+                        return amount * conversionRates.EurToUsd;
+                case 'EUR':
+                        return amount * conversionRates.UsdToEur;
+                default:
+                        return amount * conversionRates.EurToUsd;
+        }
+};
+
 module.exports = {
         getTimeSeriesUrl,
         getOverviewUrl,
         getSwopUrl,
+        convertCurrency,
 };

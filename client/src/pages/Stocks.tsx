@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Alert,
-  AlertIcon,
+  // Alert,
+  // AlertIcon,
   Button, FormLabel, Input,
 } from '@chakra-ui/core';
 import { useDispatch } from 'react-redux';
@@ -29,7 +29,7 @@ const Stocks: React.FC = () => {
         onChange={handleChange}
       />
       <Button colorScheme="blue" type="submit">
-        Button
+        Search
       </Button>
       {/* TODO: add alert message */}
       {/* {

@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getOverviewUrl, getSwopUrl } = require('./utils');
+const { getOverviewUrl, getSwopUrl, convertCurrency } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
@@ -33,8 +33,8 @@ app.get('/api/stock', async (req, res) => {
         res.json(result.data);
 });
 
-app.get('/api/currency', async (req, res) => {
-        const { from_currency, to_currency } = req.params;
+app.get('/api/currency', async (_, res) => {
+        const { currency, amount } = req.params;
         const queryUrl = getSwopUrl();
         const query = `query LatestEuro {
                 latest(baseCurrency: "EUR", quoteCurrencies: ["USD", "JPY"]) {
@@ -48,7 +48,10 @@ app.get('/api/currency', async (req, res) => {
         const result = await axios.post(queryUrl, { query });
         // res.json(result);
         console.log(result.data.data.latest);
-        res.send('done');
+        const EurToUsd = result.data.data.latest.quote;
+        const convertedAmount = convertCurrency(currency, amount, EurToUsd);
+
+        res.json(convertedAmount);
 });
 
 let tick = 0;
