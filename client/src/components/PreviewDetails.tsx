@@ -3,6 +3,7 @@ import { Box, Button } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveStock } from '../store/actionCreators';
 import CurrencyRadioBtns from './CurrencyRadioBtns';
+import PreviewChart from './PreviewChart';
 
 const PreviewDetails: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const PreviewDetails: React.FC = () => {
       {
         previewData && (
           <>
+            <PreviewChart />
             <p className="symbol">{previewData?.Symbol}</p>
             <p className="name">{previewData?.Name}</p>
             <p className="Currency">{previewData?.Currency}</p>

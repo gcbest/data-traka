@@ -33,15 +33,19 @@ app.get('/api/stock', async (req, res) => {
         const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
         console.log(overviewResult.data);
         console.log(timeSeriesResult.data);
-        const timeSeriesData = Object.keys(timeSeriesResult.data['Time Series (1min)']).sort();
-        res.json({ ...overviewResult.data, ...timeSeriesResult.data });
+        const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
+                time: [entry[0]],
+                amount: entry[1],
+        }));
+        console.log(timeSeriesData);
+        res.json({ ...overviewResult.data, timeSeriesData });
 });
 
-app.get('/api/currency', async (_, res) => {
+app.get('/api/currency', async (req, res) => {
         const { currency, amount } = req.params;
         const queryUrl = getSwopUrl();
         const query = `query LatestEuro {
-                latest(baseCurrency: "EUR", quoteCurrencies: ["USD", "JPY"]) {
+                latest(baseCurrency: "EUR", quoteCurrencies: ["USD"]) {
                   date
                   baseCurrency
                   quoteCurrency

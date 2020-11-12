@@ -21,13 +21,17 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
       .then((res) => res.json())
       .then((res) => {
         // eslint-disable-next-line no-debugger
-        const { Symbol, Name, Currency } = res;
+        const {
+          Symbol, Name, Currency, timeSeriesData,
+        } = res;
+
         const previewData: IStockPreview = {
           Symbol,
           Name,
           Currency,
           '52WeekHigh': res['52WeekHigh'],
           '52WeekLow': res['52WeekLow'],
+          timeSeriesData,
         };
         dispatch(fetchStockSuccess(previewData));
       });
