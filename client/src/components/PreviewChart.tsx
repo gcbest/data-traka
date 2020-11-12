@@ -57,7 +57,7 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
     // return () => {
     //   cleanup;
     // };
-  }, []);
+  }, [data]);
 
   return (
     <>
