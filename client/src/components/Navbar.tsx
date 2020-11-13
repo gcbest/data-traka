@@ -33,7 +33,7 @@ const Navbar: React.FC = (props) => {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing="-.1rem">
-          <Link to="/">Chakra UI</Link>
+          <Link to="/">Data Traka</Link>
         </Heading>
       </Flex>
 
@@ -58,15 +58,6 @@ const Navbar: React.FC = (props) => {
         {/* <MenuItems>Docs</MenuItems> */}
         {/* <MenuItems>Examples</MenuItems> */}
         <MenuItems>cpu-usage</MenuItems>
-      </Box>
-
-      <Box
-        display={{ sm: show ? 'block' : 'none', md: 'block' }}
-        mt={{ base: 4, md: 0 }}
-      >
-        <Button bg="transparent" border="1px">
-          Create account
-        </Button>
       </Box>
     </Flex>
   );
