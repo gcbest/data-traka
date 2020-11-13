@@ -16,18 +16,9 @@ const options: Highcharts.Options = {
       load() {
         // set up the updating of the chart each second
         const series = this.series[0];
-        // setInterval(() => {
-        //   const x = new Date().getTime(); // current time
-        //   const y = Math.random();
-        //   series.addPoint([x, y], true, true);
-        // }, 1000);
-
         socket.on('cpu', (cpuPercent: any) => {
-          console.log(cpuPercent);
-          //   const x = cpuPercent.name; // current time
-          //   const y = cpuPercent.value;
           const x = new Date().getTime(); // current time
-          const y = Math.random();
+          const y = cpuPercent.value;
           series.addPoint([x, y], true, true);
         });
       },
@@ -108,28 +99,12 @@ const options: Highcharts.Options = {
   ],
 };
 
-const ForexChartServer: React.FC = (props: HighchartsReact.Props) =>
-//   const [data, setData] = useState<any>([]);
-
-//   useEffect(() => {
-//     socket.on('cpu', (cpuPercent: any) => {
-//       console.log(cpuPercent);
-//       setData((currentData: any) => [...currentData, cpuPercent]);
-//       // setOptions((currentOptions: any) => {
-//       //   console.log(currentOptions);
-
-//       //   return ({ ...currentOptions, data: [...currentOptions.data, cpuPercent] })
-//       // })
-//       // options = {...options, data: [...percents, cpuPercent]};
-//     });
-
-//     return () => {
-//       socket.close();
-//     };
-//   }, []);
-
-  // eslint-disable-next-line implicit-arrow-linebreak
-  (
+const ForexChartServer: React.FC = (props: HighchartsReact.Props) => {
+  useEffect(() => () => {
+    socket.close();
+  }, []);
+  /* eslint-disable-next-line implicit-arrow-linebreak */
+  return (
     <>
       <HighchartsReact
         highcharts={Highcharts}
@@ -139,4 +114,5 @@ const ForexChartServer: React.FC = (props: HighchartsReact.Props) =>
       />
     </>
   );
+};
 export default ForexChartServer;

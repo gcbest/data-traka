@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { queryStock } from '../store/actionCreators';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
-import ForexChart from '../components/ForexChart';
+// import ForexChart from '../components/ForexChart';
 import ForexChartServer from '../components/ForexChartServer';
 
 const Stocks: React.FC = () => {

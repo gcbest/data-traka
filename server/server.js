@@ -24,20 +24,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/api/stock', async (req, res) => {
-        console.log(req.query);
+        // console.log(req.query);
         const { symbol } = req.query;
         const overviewQueryUrl = getOverviewUrl(symbol);
         const timeSeriesQueryUrl = getTimeSeriesUrl(symbol);
 
         const overviewResult = await axios.get(overviewQueryUrl);
         const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
-        console.log(overviewResult.data);
-        console.log(timeSeriesResult.data);
+        // console.log(overviewResult.data);
+        // console.log(timeSeriesResult.data);
         const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
                 time: entry[0],
                 amount: parseFloat(entry[1]['4. close']),
         }));
-        console.log(timeSeriesData);
+        // console.log(timeSeriesData);
         res.json({ ...overviewResult.data, timeSeriesData });
 });
 
