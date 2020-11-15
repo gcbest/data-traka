@@ -42,7 +42,7 @@ app.get('/api/stock', async (req, res) => {
 });
 
 app.get('/api/currency', async (req, res) => {
-        const { currency, amount } = req.params;
+        // const { currency, amount } = req.query;
         const queryUrl = getSwopUrl();
         const query = `query LatestEuro {
                 latest(baseCurrency: "EUR", quoteCurrencies: ["USD"]) {
@@ -56,10 +56,12 @@ app.get('/api/currency', async (req, res) => {
         const result = await axios.post(queryUrl, { query });
         // res.json(result);
         console.log(result.data.data.latest);
-        const EurToUsd = result.data.data.latest.quote;
-        const convertedAmount = convertCurrency(currency, amount, EurToUsd);
-
-        res.json(convertedAmount);
+        const EurToUsd = result.data.data.latest[0].quote;
+        const UsdToEur = 1 / EurToUsd;
+        // const convertedAmount = convertCurrency(currency, amount, EurToUsd);
+        const response = { EurToUsd, UsdToEur };
+        console.log(response);
+        res.json(response);
 });
 
 let tick = 0;

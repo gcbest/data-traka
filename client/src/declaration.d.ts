@@ -1,4 +1,12 @@
-type ActionType = 'QUERY_STOCK'| 'FETCH_STOCK_REQUEST'| 'FETCH_STOCK_SUCCESS'| 'FETCH_STOCK_ERROR'| 'ADD_STOCK_TO_LIST'
+type ActionType = 'QUERY_STOCK'| 'FETCH_STOCK_REQUEST'| 'FETCH_STOCK_SUCCESS'| 'FETCH_STOCK_ERROR'
+| 'ADD_STOCK_TO_LIST' | 'CONVERT_CURRENCY' | 'SET_CURRENT_RATES'
+type Currency = 'USD' | 'EUR'
+
+interface IConvRates {
+  EurToUsd: number
+  UsdToEur: number
+}
+// type NewAction = Currency & IConvRates
 
 interface ITimeSeriesData {
   time: string
@@ -8,7 +16,7 @@ interface ITimeSeriesData {
 interface IStockPreview {
   Symbol: string
   Name: string
-  Currency: string
+  Currency: Currency
   '52WeekHigh': number
   '52WeekLow': number
   timeSeriesData: ITimeSeriesData[]
@@ -22,12 +30,23 @@ interface IStockDetails extends IStockPreview {
 
 interface IAction {
   type: ActionType
-  payload?: IStockPreview
+  payload?: IStockPreview | IActionCurrency | any
 }
+
+interface IActionCurrency {
+  type: ActionType
+  payload: IConvRates
+}
+
+// type IAction = IActionStock | IActionCurrency | any
+// type IAction = any
 
 interface IState {
   loading: boolean
   error: string
   stockPreview?: IStockPreview | undefined
   saved: IStockPreview[]
+  convRates?: IConvRates
 }
+
+type ConvertCurrency = (newCurrency: Currency, amount: number, convRate: IConvRates) => number

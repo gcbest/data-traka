@@ -1,5 +1,7 @@
 import { Dispatch } from 'redux';
-import { ADD_STOCK_TO_LIST, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS } from './actionTypes';
+import {
+  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, SET_CURRENT_RATES,
+} from './actionTypes';
 
 export function fetchStockRequest(): IAction {
   return {
@@ -42,5 +44,20 @@ export function saveStock(stockDetails: IStockPreview): IAction {
   return {
     type: ADD_STOCK_TO_LIST,
     payload: stockDetails,
+  };
+}
+
+export function setConversionRates(convRates: IConvRates): IAction {
+  return {
+    type: SET_CURRENT_RATES,
+    payload: convRates,
+  };
+}
+
+export function convertCurrency(newCurrency: Currency): IAction {
+  // const newAction: NewAction = { newCurrency: 'USD', convRates };
+  return {
+    type: CONVERT_CURRENCY,
+    payload: { newCurrency },
   };
 }
