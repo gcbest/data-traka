@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AgChartsReact } from 'ag-charts-react';
+import * as agCharts from 'ag-charts-community';
 
 interface Props {
   data: any[]
@@ -24,6 +25,30 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
           type: 'line',
           xKey: 'time',
           yKey: 'amount',
+        },
+      ],
+      axes: [
+        {
+          // type: 'time',
+          type: 'category',
+          // nice: false,
+          position: 'bottom',
+          // tick: {
+          //   count: agCharts.time.month,
+          // },
+          label: {
+            // format: '%H:%M:%S',
+            rotation: 330,
+          },
+        },
+        {
+          type: 'number',
+          position: 'left',
+          // label: {
+          //   formatter: function (params) {
+          //     return params.value + ' °C';
+          //   },
+          // },
         },
       ],
       // axes: [
