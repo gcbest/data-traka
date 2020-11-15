@@ -38,7 +38,10 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
           // },
           label: {
             // format: '%H:%M:%S',
-            rotation: 330,
+            // rotation: 330,
+            formatter() {
+              return '';
+            },
           },
         },
         {
