@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Button } from '@chakra-ui/core';
+import {
+  Box, Button, Flex, Spacer,
+} from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveStock } from '../store/actionCreators';
 import CurrencyRadioBtns from './CurrencyRadioBtns';
@@ -22,23 +24,33 @@ const PreviewDetails: React.FC = () => {
 
       {
         previewData && (
-          <>
+          <Flex justify="center">
             <PreviewChart data={previewData.timeSeriesData} />
-            <p className="symbol">{previewData?.Symbol}</p>
-            <p className="name">{previewData?.Name}</p>
-            <p className="Currency">{previewData?.Currency}</p>
-            <p className="high">{previewData?.['52WeekHigh']}</p>
-            <p className="low">{previewData?.['52WeekLow']}</p>
-            {isNew
+            {/* <Spacer /> */}
+            <Box margin="2rem">
+
+              <p className="symbol">{previewData?.Symbol}</p>
+              <p className="name">{previewData?.Name}</p>
+              <CurrencyRadioBtns defaultValue={previewData?.Currency} />
+              {/* TODO: depending on currency convert the symbol */}
+              <p className="high">
+                $
+                {previewData?.['52WeekHigh']}
+              </p>
+              <p className="low">
+                $
+                {previewData?.['52WeekLow']}
+              </p>
+              {isNew
             && (
               <Button colorScheme="green" type="button" onClick={handleClick}>
-                Add
+                Add to List
               </Button>
             )}
-          </>
+            </Box>
+          </Flex>
         )
       }
-      <CurrencyRadioBtns defaultValue={previewData?.Currency} />
     </Box>
   );
 };

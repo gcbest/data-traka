@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   // Alert,
   // AlertIcon,
   Button, FormLabel, Input,
@@ -23,16 +24,19 @@ const Stocks: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormLabel>Stock Symbol</FormLabel>
-      <Input
-        variant="outline"
-        placeholder="e.g. IBM"
-        value={value}
-        onChange={handleChange}
-      />
-      <Button colorScheme="blue" type="submit">
-        Search
-      </Button>
+      <Box w="40%" textAlign="center" margin="2rem auto">
+        <FormLabel textAlign="center">Enter Stock Symbol</FormLabel>
+        <Input
+          w="50%"
+          variant="outline"
+          placeholder="e.g. IBM"
+          value={value}
+          onChange={handleChange}
+        />
+        <Button marginLeft="1rem" colorScheme="blue" type="submit">
+          Search
+        </Button>
+      </Box>
       {/* TODO: add alert message */}
       {/* {
         successfulAdd

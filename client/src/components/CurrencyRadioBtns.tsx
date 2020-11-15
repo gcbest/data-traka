@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactText } from 'react';
-import { Box, useRadio, useRadioGroup } from '@chakra-ui/core';
+import {
+  Box, Flex, useRadio, useRadioGroup,
+} from '@chakra-ui/core';
 
 // 1. Create a component that consumes the `useRadio` hook
 function RadioCard(props: any) {
@@ -43,7 +45,7 @@ interface Props {
 }
 
 const CurrencyRadioBtns: React.FC<Props> = ({ defaultValue = 'USD' }) => {
-  const options = ['USD', 'EUR', 'JPY'];
+  const options = ['USD', 'EUR'];
 
   const handleChange = (nextValue: ReactText) => {
     console.log(nextValue);
@@ -59,14 +61,16 @@ const CurrencyRadioBtns: React.FC<Props> = ({ defaultValue = 'USD' }) => {
 
   return (
     <Box {...group}>
-      {options.map((value) => {
-        const radio = getRadioProps({ value });
-        return (
-          <RadioCard key={value} {...radio}>
-            {value}
-          </RadioCard>
-        );
-      })}
+      <Flex>
+        {options.map((value) => {
+          const radio = getRadioProps({ value });
+          return (
+            <RadioCard key={value} {...radio}>
+              {value}
+            </RadioCard>
+          );
+        })}
+      </Flex>
     </Box>
   );
 };
