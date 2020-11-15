@@ -3,7 +3,7 @@ import {
   Box,
   // Alert,
   // AlertIcon,
-  Button, FormLabel, Input,
+  Button, Flex, FormLabel, Input,
 } from '@chakra-ui/core';
 import { useDispatch } from 'react-redux';
 import { queryStock } from '../store/actionCreators';
@@ -23,22 +23,23 @@ const Stocks: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Box w="40%" textAlign="center" margin="2rem auto">
-        <FormLabel textAlign="center">Enter Stock Symbol</FormLabel>
-        <Input
-          w="50%"
-          variant="outline"
-          placeholder="e.g. IBM"
-          value={value}
-          onChange={handleChange}
-        />
-        <Button marginLeft="1rem" colorScheme="blue" type="submit">
-          Search
-        </Button>
-      </Box>
-      {/* TODO: add alert message */}
-      {/* {
+    <>
+      <form onSubmit={handleSubmit}>
+        <Box w="40%" textAlign="center" margin="2rem auto">
+          <FormLabel textAlign="center"><h2>Enter Stock Symbol</h2></FormLabel>
+          <Input
+            w="50%"
+            variant="outline"
+            placeholder="e.g. IBM"
+            value={value}
+            onChange={handleChange}
+          />
+          <Button marginLeft="1rem" colorScheme="blue" type="submit">
+            Search
+          </Button>
+        </Box>
+        {/* TODO: add alert message */}
+        {/* {
         successfulAdd
         && (
           <Alert status="success">
@@ -47,12 +48,16 @@ const Stocks: React.FC = () => {
           </Alert>
         )
       } */}
-
+      </form>
       <PreviewDetails />
-      <GridView />
-      {/* <ForexChart /> */}
-      <ForexChartServer />
-    </form>
+      <Flex justify="center" marginTop="2rem">
+        <Box marginRight="2rem">
+          <GridView />
+        </Box>
+        {/* <ForexChart /> */}
+        <ForexChartServer />
+      </Flex>
+    </>
   );
 };
 
