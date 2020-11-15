@@ -50,12 +50,14 @@ const Stocks: React.FC = () => {
       } */}
       </form>
       <PreviewDetails />
-      <Flex justify="center" marginTop="2rem">
-        <Box marginRight="2rem">
+      <Flex justify="center">
+        <Box margin="2rem 1rem">
           <GridView />
         </Box>
-        {/* <ForexChart /> */}
-        <ForexChartServer />
+        <Box margin="2rem 1rem">
+          {/* <ForexChart /> */}
+          <ForexChartServer />
+        </Box>
       </Flex>
     </>
   );
