@@ -1,12 +1,14 @@
 import React from 'react';
 import {
+  Alert,
+  AlertIcon,
   Box,
   // Alert,
   // AlertIcon,
   Button, Flex, FormLabel, Input,
 } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { queryStock } from '../store/actionCreators';
+import { queryStock, resetSearch } from '../store/actionCreators';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
 // import ForexChart from '../components/ForexChart';
@@ -14,9 +16,13 @@ import ForexChartServer from '../components/ForexChartServer';
 
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state: IState) => state.loading);
+  // eslint-disable-next-line no-shadow
+  const { loading, error } = useSelector(({ loading, error }: IState) => ({ loading, error }));
   const [value, setValue] = React.useState<string>('');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value.toUpperCase());
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (error) dispatch(resetSearch());
+    setValue(event.target.value.toUpperCase());
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,15 +55,22 @@ const Stocks: React.FC = () => {
           </Alert>
         )
       } */}
+        {
+          error && (
+            <Alert status="error">
+              <AlertIcon />
+              {`${error}`}
+            </Alert>
+          )
+        }
       </form>
       <PreviewDetails />
       <Flex justify="center">
         <Box margin="2rem 1rem">
-          <GridView />
+          <ForexChartServer />
         </Box>
         <Box margin="2rem 1rem">
-          {/* <ForexChart /> */}
-          <ForexChartServer />
+          <GridView />
         </Box>
       </Flex>
     </>

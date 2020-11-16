@@ -57,7 +57,8 @@ const Navbar: React.FC = (props) => {
       >
         {/* <MenuItems>Docs</MenuItems> */}
         {/* <MenuItems>Examples</MenuItems> */}
-        <MenuItems>cpu-usage</MenuItems>
+
+        {/* <MenuItems>cpu-usage</MenuItems> */}
       </Box>
     </Flex>
   );

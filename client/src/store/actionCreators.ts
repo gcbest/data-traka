@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import {
-  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, SET_CURRENT_RATES,
+  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, RESET_SEARCH, SET_CURRENT_RATES,
 } from './actionTypes';
 
 export function fetchStockRequest(): IAction {
@@ -13,6 +13,19 @@ export function fetchStockSuccess(stockData: IStockPreview): IAction {
   return {
     type: FETCH_STOCK_SUCCESS,
     payload: stockData,
+  };
+}
+
+export function fetchStockError(err: string): IAction {
+  return {
+    type: FETCH_STOCK_ERROR,
+    payload: { message: err },
+  };
+}
+
+export function resetSearch(): IAction {
+  return {
+    type: RESET_SEARCH,
   };
 }
 
@@ -35,6 +48,10 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
           timeSeriesData,
         };
         dispatch(fetchStockSuccess(previewData));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(fetchStockError('Unable to find stock'));
       });
   };
 }

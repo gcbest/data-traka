@@ -24,7 +24,7 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
         {
           type: 'line',
           xKey: 'time',
-          yKey: 'amount',
+          yKey: 'price',
         },
       ],
       axes: [

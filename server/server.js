@@ -29,16 +29,20 @@ app.get('/api/stock', async (req, res) => {
         const overviewQueryUrl = getOverviewUrl(symbol);
         const timeSeriesQueryUrl = getTimeSeriesUrl(symbol);
 
-        const overviewResult = await axios.get(overviewQueryUrl);
-        const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
-        // console.log(overviewResult.data);
-        // console.log(timeSeriesResult.data);
-        const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
-                time: entry[0],
-                amount: parseFloat(entry[1]['4. close']),
-        }));
-        // console.log(timeSeriesData);
-        res.json({ ...overviewResult.data, timeSeriesData });
+        try {
+                const overviewResult = await axios.get(overviewQueryUrl);
+                const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
+                // console.log(overviewResult.data);
+                // console.log(timeSeriesResult.data);
+                const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
+                        time: entry[0],
+                        price: parseFloat(entry[1]['4. close']),
+                }));
+                // console.log(timeSeriesData);
+                res.json({ ...overviewResult.data, timeSeriesData });
+        } catch (error) {
+                res.status(500).send('Unable to find stock');
+        }
 });
 
 app.get('/api/currency', async (req, res) => {
