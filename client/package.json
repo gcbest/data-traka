@@ -16,6 +16,7 @@
     "ag-charts-react": "^2.1.0",
     "ag-grid-community": "^24.1.0",
     "ag-grid-react": "^24.1.1",
+    "eslint-config-airbnb": "^18.2.1",
     "framer-motion": "^2.9.4",
     "highcharts": "^8.2.2",
     "highcharts-react-official": "^3.0.0",
