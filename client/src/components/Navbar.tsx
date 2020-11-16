@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Box, Heading, Flex, Text, Button,
+  Box, Heading, Flex, Text,
 } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 

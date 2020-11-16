@@ -3,8 +3,6 @@ import {
   Alert,
   AlertIcon,
   Box,
-  // Alert,
-  // AlertIcon,
   Button, Flex, FormLabel, Input,
 } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,16 +43,6 @@ const Stocks: React.FC = () => {
             Search
           </Button>
         </Box>
-        {/* TODO: add alert message */}
-        {/* {
-        successfulAdd
-        && (
-          <Alert status="success">
-            <AlertIcon />
-            `${payload.Name} added to list`
-          </Alert>
-        )
-      } */}
         {
           error && (
             <Alert status="error">
