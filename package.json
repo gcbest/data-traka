@@ -11,6 +11,7 @@
     "start:server": "cd server && nodemon server.js",
     "client": "cd client && npm run start",
     "install": "cd client && npm install && cd ../server && npm install",
+    "postinstall":"cd client && tsc",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   }

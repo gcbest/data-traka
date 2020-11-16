@@ -22,10 +22,10 @@ const GridView: React.FC = () => {
         onGridReady={onGridReady}
         rowData={rowData}
       >
-        <AgGridColumn field="Symbol" />
-        <AgGridColumn field="Name" />
-        <AgGridColumn field="52WeekHigh" />
-        <AgGridColumn field="52WeekLow" />
+        <AgGridColumn field="Symbol" sortable filter />
+        <AgGridColumn field="Name" sortable filter />
+        <AgGridColumn field="52WeekHigh" sortable />
+        <AgGridColumn field="52WeekLow" sortable />
       </AgGridReact>
     </div>
   );
