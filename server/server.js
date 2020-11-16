@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // if (process.env.NODE_ENV.trim() === 'production') {
-app.use(express.static('../client/build'));
+app.use(express.static(path.join(__dirname, '../client/build')));
 // }
 
 app.get('/api/stock', async (req, res) => {
