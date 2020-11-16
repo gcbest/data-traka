@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV.trim() === 'production') {
         app.use(express.static('../client/build'));
 }
 
