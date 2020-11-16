@@ -23,6 +23,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+if (process.env.NODE_ENV === 'production') {
+        app.use(express.static('../client/build'));
+}
+
 app.get('/api/stock', async (req, res) => {
         // console.log(req.query);
         const { symbol } = req.query;
@@ -148,6 +152,8 @@ io.on('connection', client => {
         });
 });
 
-const server = http.listen(3001, () => {
+const PORT = process.env.PORT || 3001;
+
+const server = http.listen(PORT, () => {
         console.log('server is running on port', server.address().port);
 });

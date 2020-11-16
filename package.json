@@ -5,8 +5,11 @@
   "author": "Godfrey Best <godfrey.c.best@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npm run start:client & npm run start:server",
+    "start": "node server/server.js",
+    "start:dev": "npm run start:client & npm run start:server",
     "start:client": "cd client && npm run start",
-    "start:server": "cd server && nodemon server.js"
+    "start:server": "cd server && nodemon server.js",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   }
 }
