@@ -22,7 +22,6 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
     return fetch(`/api/stock?symbol=${symbol}`)
       .then((res) => res.json())
       .then((res) => {
-        // eslint-disable-next-line no-debugger
         const {
           Symbol, Name, Currency, timeSeriesData,
         } = res;
@@ -54,7 +53,7 @@ export function setConversionRates(convRates: IConvRates): IAction {
   };
 }
 
-export function convertCurrency(newCurrency: Currency): IAction {
+export function convertCurrency(newCurrency: Currency | string): IAction {
   // const newAction: NewAction = { newCurrency: 'USD', convRates };
   return {
     type: CONVERT_CURRENCY,

@@ -53,12 +53,13 @@ const CurrencyRadioBtns: React.FC<Props> = ({ defaultValue = 'USD' }) => {
 
   const handleChange = (nextValue: ReactText) => {
     console.log(nextValue);
+    if (typeof nextValue !== 'string') return;
     fetch('/api/currency')
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         dispatch(setConversionRates(data));
-        dispatch(convertCurrency(data));
+        dispatch(convertCurrency(nextValue));
       });
   };
 

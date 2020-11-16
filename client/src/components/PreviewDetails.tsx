@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Button, Flex, Spacer,
+  Box, Button, Flex,
 } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveStock } from '../store/actionCreators';
@@ -26,19 +26,17 @@ const PreviewDetails: React.FC = () => {
         previewData && (
           <Flex justify="center">
             <PreviewChart data={previewData.timeSeriesData} />
-            {/* <Spacer /> */}
             <Box margin="2rem">
 
               <p className="symbol">{previewData?.Symbol}</p>
               <p className="name">{previewData?.Name}</p>
               <CurrencyRadioBtns defaultValue={previewData?.Currency} />
-              {/* TODO: depending on currency convert the symbol */}
               <p className="high">
-                $
+                {previewData.Currency === 'USD' ? '$' : '€'}
                 {previewData?.['52WeekHigh']}
               </p>
               <p className="low">
-                $
+                {previewData.Currency === 'USD' ? '$' : '€'}
                 {previewData?.['52WeekLow']}
               </p>
               {isNew

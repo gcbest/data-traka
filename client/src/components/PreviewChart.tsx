@@ -79,8 +79,6 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
       // ],
       legend: { spacing: 40 },
     };
-    // eslint-disable-next-line no-debugger
-    debugger;
     setOptions(initialOptions);
     // return () => {
     //   cleanup;

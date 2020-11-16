@@ -36,7 +36,7 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
       };
 
     case CONVERT_CURRENCY:
-      switch (payload?.Currency) {
+      switch (payload?.newCurrency) {
         case 'USD':
           // eslint-disable-next-line no-case-declarations
           if (!stockPreview || !convRates) return state;

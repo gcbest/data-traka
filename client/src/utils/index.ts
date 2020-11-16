@@ -1,13 +1,15 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 
+const round2Decimals = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
+
 const convertCurrency: ConvertCurrency = (newCurrency, amount, convRate) => {
   switch (newCurrency) {
     case 'USD':
-      return amount * convRate.EurToUsd;
+      return round2Decimals(amount * convRate.EurToUsd);
     case 'EUR':
-      return amount * convRate.UsdToEur;
+      return round2Decimals(amount * convRate.UsdToEur);
     default:
-      return amount * convRate.EurToUsd;
+      return round2Decimals(amount * convRate.EurToUsd);
   }
 };
 
