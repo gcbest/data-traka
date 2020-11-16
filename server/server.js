@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl, convertCurrency } = require('./utils');
+const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
