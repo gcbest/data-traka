@@ -1,5 +1,5 @@
 require('dotenv').config({ path: '../.env' });
-
+const path = require('path');
 const axios = require('axios');
 const express = require('express');
 // const server = require('http').createServer();
@@ -23,9 +23,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-if (process.env.NODE_ENV.trim() === 'production') {
-        app.use(express.static('../client/build'));
-}
+// if (process.env.NODE_ENV.trim() === 'production') {
+app.use(express.static('../client/build'));
+// }
 
 app.get('/api/stock', async (req, res) => {
         // console.log(req.query);
@@ -70,6 +70,10 @@ app.get('/api/currency', async (req, res) => {
         const response = { EurToUsd, UsdToEur };
         console.log(response);
         res.json(response);
+});
+
+app.get('/*', function(req, res) {
+        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 let tick = 0;
