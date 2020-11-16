@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import {
-  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_SUCCESS, SET_CURRENT_RATES,
+  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, SET_CURRENT_RATES,
 } from './actionTypes';
 import utils from '../utils';
 
@@ -17,9 +17,15 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
   const { stockPreview, convRates } = state;
 
   switch (type) {
+    case FETCH_STOCK_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
     case FETCH_STOCK_SUCCESS:
       return {
         ...state,
+        loading: false,
         stockPreview: payload,
       };
 

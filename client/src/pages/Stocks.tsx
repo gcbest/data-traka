@@ -5,7 +5,7 @@ import {
   // AlertIcon,
   Button, Flex, FormLabel, Input,
 } from '@chakra-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { queryStock } from '../store/actionCreators';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
@@ -14,6 +14,7 @@ import ForexChartServer from '../components/ForexChartServer';
 
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
+  const loading = useSelector((state: IState) => state.loading);
   const [value, setValue] = React.useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value.toUpperCase());
 
@@ -34,7 +35,7 @@ const Stocks: React.FC = () => {
             value={value}
             onChange={handleChange}
           />
-          <Button marginLeft="1rem" colorScheme="blue" type="submit">
+          <Button disabled={loading} marginLeft="1rem" colorScheme="blue" type="submit">
             Search
           </Button>
         </Box>
