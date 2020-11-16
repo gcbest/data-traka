@@ -17,7 +17,12 @@ const PreviewDetails: React.FC = () => {
   const handleClick = () => {
     if (!previewData) return;
     dispatch(saveStock(previewData));
+    // add to localStorage
+    const newSavedStocks = [...savedStocks, previewData];
+    localStorage.setItem('savedStocks', JSON.stringify(newSavedStocks));
   };
+
+  // TODO: add test showing correct currency symbol on radio btn change
 
   return (
     <Box>

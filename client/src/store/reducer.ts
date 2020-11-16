@@ -4,11 +4,13 @@ import {
 } from './actionTypes';
 import utils from '../utils';
 
+const savedStocks = localStorage.getItem('savedStocks');
+
 const initialState = {
   loading: false,
   error: '',
   stockPreview: undefined,
-  saved: [],
+  saved: savedStocks ? JSON.parse(savedStocks) : [],
 };
 
 const reducer: Reducer = (state: IState = initialState, { type, payload }: IAction): IState => {
