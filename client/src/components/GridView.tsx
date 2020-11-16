@@ -19,10 +19,11 @@ const GridView: React.FC = () => {
   return (
     <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
       <AgGridReact
+        rowSelection="multiple"
         onGridReady={onGridReady}
         rowData={rowData}
       >
-        <AgGridColumn field="Symbol" sortable filter />
+        <AgGridColumn field="Symbol" sortable filter checkboxSelection />
         <AgGridColumn field="Name" sortable filter />
         <AgGridColumn field="52WeekHigh" sortable />
         <AgGridColumn field="52WeekLow" sortable />
