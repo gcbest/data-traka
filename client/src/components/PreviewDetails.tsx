@@ -36,6 +36,7 @@ const PreviewDetails: React.FC = () => {
               <p className="symbol">{previewData?.Symbol}</p>
               <p className="name">{previewData?.Name}</p>
               <CurrencyRadioBtns defaultValue={previewData?.Currency} />
+              <p className="price">{previewData.price}</p>
               <p className="high">
                 {previewData.Currency === 'USD' ? '$' : '€'}
                 {previewData?.['52WeekHigh']}

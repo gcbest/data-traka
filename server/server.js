@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl } = require('./utils');
+const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl, getQuoteUrl } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
@@ -32,18 +32,22 @@ app.get('/api/stock', async (req, res) => {
         const { symbol } = req.query;
         const overviewQueryUrl = getOverviewUrl(symbol);
         const timeSeriesQueryUrl = getTimeSeriesUrl(symbol);
+        const quoteUrl = getQuoteUrl(symbol);
 
         try {
                 const overviewResult = await axios.get(overviewQueryUrl);
                 const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
+                const quoteResult = await axios.get(quoteUrl);
                 // console.log(overviewResult.data);
                 // console.log(timeSeriesResult.data);
                 const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
                         time: entry[0],
                         price: parseFloat(entry[1]['4. close']),
                 }));
+                let price = quoteResult.data['Global Quote']['05. price'];
+                price = parseFloat(price);
                 // console.log(timeSeriesData);
-                res.json({ ...overviewResult.data, timeSeriesData });
+                res.json({ ...overviewResult.data, timeSeriesData, price });
         } catch (error) {
                 res.status(500).send('Unable to find stock');
         }

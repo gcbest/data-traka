@@ -1,5 +1,5 @@
 type ActionType = 'QUERY_STOCK'| 'FETCH_STOCK_REQUEST'| 'FETCH_STOCK_SUCCESS'| 'FETCH_STOCK_ERROR'
-| 'ADD_STOCK_TO_LIST' | 'CONVERT_CURRENCY' | 'SET_CURRENT_RATES' | 'RESET_SEARCH'
+| 'ADD_STOCK_TO_LIST' | 'CONVERT_CURRENCY' | 'SET_CURRENT_RATES' | 'RESET_SEARCH' | 'UPDATE_SAVED_STOCKS'
 type Currency = 'USD' | 'EUR'
 
 interface IConvRates {
@@ -19,6 +19,7 @@ interface IStockPreview {
   Currency: Currency
   '52WeekHigh': number
   '52WeekLow': number
+  price: number
   timeSeriesData: ITimeSeriesData[]
 }
 

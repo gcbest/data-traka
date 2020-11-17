@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import {
-  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, RESET_SEARCH, SET_CURRENT_RATES,
+  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, RESET_SEARCH, SET_CURRENT_RATES, UPDATE_SAVED_STOCKS,
 } from './actionTypes';
 import utils from '../utils';
 
@@ -48,6 +48,12 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
       return {
         ...state,
         saved: [...state.saved, payload],
+      };
+
+    case UPDATE_SAVED_STOCKS:
+      return {
+        ...state,
+        saved: payload.newSavedStocks,
       };
 
     case SET_CURRENT_RATES:

@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import {
-  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, RESET_SEARCH, SET_CURRENT_RATES,
+  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, RESET_SEARCH, SET_CURRENT_RATES, UPDATE_SAVED_STOCKS,
 } from './actionTypes';
 
 export function fetchStockRequest(): IAction {
@@ -36,7 +36,7 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
       .then((res) => res.json())
       .then((res) => {
         const {
-          Symbol, Name, Currency, timeSeriesData,
+          Symbol, Name, Currency, timeSeriesData, price,
         } = res;
 
         const previewData: IStockPreview = {
@@ -45,6 +45,7 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
           Currency,
           '52WeekHigh': res['52WeekHigh'],
           '52WeekLow': res['52WeekLow'],
+          price,
           timeSeriesData,
         };
         dispatch(fetchStockSuccess(previewData));
@@ -60,6 +61,13 @@ export function saveStock(stockDetails: IStockPreview): IAction {
   return {
     type: ADD_STOCK_TO_LIST,
     payload: stockDetails,
+  };
+}
+
+export function updateSavedStocks(newSavedStocks: IStockPreview[]): IAction {
+  return {
+    type: UPDATE_SAVED_STOCKS,
+    payload: { newSavedStocks },
   };
 }
 
