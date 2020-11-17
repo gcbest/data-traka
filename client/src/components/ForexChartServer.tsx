@@ -31,7 +31,7 @@ const options: Highcharts.Options = {
   },
 
   title: {
-    text: 'Live random data',
+    text: 'CPU Usage',
   },
 
   accessibility: {
@@ -81,7 +81,7 @@ const options: Highcharts.Options = {
   series: [
     {
       type: 'spline',
-      name: 'Random data',
+      name: 'Usage',
       data: (function () {
         // generate an array of random data
         const data = [];

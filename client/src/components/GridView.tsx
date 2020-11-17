@@ -4,6 +4,8 @@ import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { IconButton } from '@chakra-ui/core';
+import { DeleteIcon } from '@chakra-ui/icons';
 import { updateSavedStocks } from '../store/actionCreators';
 
 const GridView: React.FC = () => {
@@ -29,14 +31,19 @@ const GridView: React.FC = () => {
     const selectedSymbols: string[] = selectedNodes.map((node: any) => node?.data?.Symbol);
     const remainingRows = rowData.filter((row) => !selectedSymbols.includes(row.Symbol));
     // eslint-disable-next-line no-restricted-globals
-    if (confirm('Are you sure you want to remove selected rows')) { dispatch(updateSavedStocks(remainingRows)); }
+    if (confirm('Are you sure you want to remove selected rows?')) { dispatch(updateSavedStocks(remainingRows)); }
   };
 
   return (
     <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
       {
         numRowsSelected > 0 && (
-          <button type="button" onClick={handleClick} style={{ color: 'red', backgroundColor: 'white', padding: '1rem' }}>remove</button>
+          <IconButton
+            colorScheme="blue"
+            aria-label="Delete rows"
+            icon={<DeleteIcon />}
+            onClick={handleClick}
+          />
         )
       }
       <AgGridReact
