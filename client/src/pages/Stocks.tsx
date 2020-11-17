@@ -52,7 +52,7 @@ const Stocks: React.FC = () => {
           )
         }
       </form>
-      <PreviewDetails />
+      <PreviewDetails loading={loading} />
       <Flex justify="center">
         <Box margin="2rem 1rem">
           <ForexChartServer />

@@ -44,11 +44,12 @@ app.get('/api/stock', async (req, res) => {
                         time: entry[0],
                         price: parseFloat(entry[1]['4. close']),
                 }));
-                let price = quoteResult.data['Global Quote']['05. price'];
+                let price = quoteResult.data['Global Quote'] && quoteResult.data['Global Quote']['05. price'];
                 price = parseFloat(price);
                 // console.log(timeSeriesData);
                 res.json({ ...overviewResult.data, timeSeriesData, price });
         } catch (error) {
+                console.error(error);
                 res.status(500).send('Unable to find stock');
         }
 });

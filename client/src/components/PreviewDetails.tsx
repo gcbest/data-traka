@@ -1,13 +1,17 @@
 import React from 'react';
 import {
-  Box, Button, Flex,
+  Box, Button, Flex, HStack, Skeleton, Spacer,
 } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveStock } from '../store/actionCreators';
 import CurrencyRadioBtns from './CurrencyRadioBtns';
 import PreviewChart from './PreviewChart';
 
-const PreviewDetails: React.FC = () => {
+interface Props {
+  loading: boolean
+}
+
+const PreviewDetails: React.FC<Props> = ({ loading }) => {
   const dispatch = useDispatch();
   const previewData: IStockPreview | undefined = useSelector((state: IState) => state.stockPreview);
   const savedStocks: IStockPreview[] = useSelector((state: IState) => state.saved);
@@ -26,7 +30,12 @@ const PreviewDetails: React.FC = () => {
 
   return (
     <Box>
-
+      {loading && (
+        <HStack spacing={8} justify="center">
+          <Skeleton isLoaded={!loading} height="300px" width="400px" />
+          <Skeleton isLoaded={!loading} height="300px" width="400px" />
+        </HStack>
+      )}
       {
         previewData && (
           <Flex justify="center">
@@ -36,7 +45,10 @@ const PreviewDetails: React.FC = () => {
               <p className="symbol">{previewData?.Symbol}</p>
               <p className="name">{previewData?.Name}</p>
               <CurrencyRadioBtns defaultValue={previewData?.Currency} />
-              <p className="price">{previewData.price}</p>
+              <p className="price">
+                {previewData.Currency === 'USD' ? '$' : '€'}
+                {previewData.price}
+              </p>
               <p className="high">
                 {previewData.Currency === 'USD' ? '$' : '€'}
                 {previewData?.['52WeekHigh']}
