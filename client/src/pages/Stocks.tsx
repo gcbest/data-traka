@@ -39,7 +39,14 @@ const Stocks: React.FC = () => {
             value={value}
             onChange={handleChange}
           />
-          <Button disabled={loading} marginLeft="1rem" colorScheme="blue" type="submit">
+          <Button
+            disabled={loading}
+            marginLeft="1rem"
+            colorScheme="blue"
+            type="submit"
+            isLoading={loading}
+            loadingText="Searching"
+          >
             Search
           </Button>
         </Box>

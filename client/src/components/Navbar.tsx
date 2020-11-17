@@ -1,11 +1,24 @@
 import React from 'react';
 import {
-  Box, Heading, Flex, Text,
+  Box, Heading, Flex, Text, useColorMode, Button, IconButton,
 } from '@chakra-ui/core';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
+
 import { Link } from 'react-router-dom';
 
 interface Props {
   children: any;
+}
+
+function ToggleColorMode() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <header>
+      {colorMode === 'light'
+        ? <IconButton aria-label="Moon Icon" colorScheme="blue" onClick={toggleColorMode} icon={<MoonIcon />} />
+        : <IconButton aria-label="Sun Icon" colorScheme="blue" onClick={toggleColorMode} icon={<SunIcon />} />}
+    </header>
+  );
 }
 
 const MenuItems: React.FC<Props> = ({ children }) => (
@@ -58,6 +71,12 @@ const Navbar: React.FC = (props) => {
         {/* <MenuItems>Examples</MenuItems> */}
 
         {/* <MenuItems>cpu-usage</MenuItems> */}
+      </Box>
+      <Box
+        display={{ sm: show ? 'block' : 'none', md: 'block' }}
+        mt={{ base: 4, md: 0 }}
+      >
+        <ToggleColorMode />
       </Box>
     </Flex>
   );
