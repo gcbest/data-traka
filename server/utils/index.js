@@ -12,6 +12,8 @@ const getConversionRates = EurToUsd => ({
         UsdToEur: 1 / EurToUsd,
 });
 
+const isEmptyObj = obj => Object.keys(obj).length === 0 && obj.constructor === Object;
+
 const convertCurrency = (currency, amount, EurToUsd) => {
         const conversionRates = getConversionRates(EurToUsd);
         switch (currency) {
@@ -29,5 +31,6 @@ module.exports = {
         getOverviewUrl,
         getQuoteUrl,
         getSwopUrl,
+        isEmptyObj,
         convertCurrency,
 };

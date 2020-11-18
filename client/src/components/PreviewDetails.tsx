@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import {
   Box, Button, Flex, HStack, Skeleton, Spacer,
@@ -13,7 +14,8 @@ interface Props {
 
 const PreviewDetails: React.FC<Props> = ({ loading }) => {
   const dispatch = useDispatch();
-  const previewData: IStockPreview | undefined = useSelector((state: IState) => state.stockPreview);
+  // eslint-disable-next-line no-shadow
+  const { stockPreview: previewData, error }: {stockPreview: IStockPreview | undefined, error: string} = useSelector(({ stockPreview, error }: IState) => ({ stockPreview, error }));
   const savedStocks: IStockPreview[] = useSelector((state: IState) => state.saved);
   // TODO: add test isNew and displaying the button
   const isNew = savedStocks.filter((stock: IStockPreview) => stock.Name === previewData?.Name).length < 1;
@@ -37,7 +39,7 @@ const PreviewDetails: React.FC<Props> = ({ loading }) => {
         </HStack>
       )}
       {
-        previewData && (
+        !loading && !error && previewData && (
           <Flex justify="center">
             <PreviewChart data={previewData.timeSeriesData} />
             <Box margin="2rem">

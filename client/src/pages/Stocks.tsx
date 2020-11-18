@@ -14,7 +14,7 @@ const rightBoxVariants = {
   },
   animate: {
     x: -5,
-    transition: { delay: 1, duration: 1.5 },
+    transition: { delay: 2, duration: 1.5 },
   },
 };
 const MotionBox = motion.custom(Box);

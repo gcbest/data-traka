@@ -33,6 +33,7 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
       return {
         ...state,
         loading: false,
+        stockPreview: undefined,
         error: payload.message,
       };
 

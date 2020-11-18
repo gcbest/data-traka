@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require('os-utils');
 // eslint-disable-next-line import/order
-const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl, getQuoteUrl } = require('./utils');
+const { getOverviewUrl, getTimeSeriesUrl, getSwopUrl, getQuoteUrl, isEmptyObj } = require('./utils');
 
 const app = express();
 const http = require('http').Server(app);
@@ -40,6 +40,13 @@ app.get('/api/stock', async (req, res) => {
                 const quoteResult = await axios.get(quoteUrl);
                 // console.log(overviewResult.data);
                 // console.log(timeSeriesResult.data);
+                if (
+                        isEmptyObj(overviewResult.data) &&
+                        !timeSeriesResult.data['Time Series (1min)'] &&
+                        isEmptyObj(quoteResult.data['Global Quote'])
+                )
+                        return res.status(500).send('Unable to find stock');
+
                 let timeSeriesData = [];
                 if (timeSeriesResult.data['Time Series (1min)']) {
                         timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
@@ -50,6 +57,7 @@ app.get('/api/stock', async (req, res) => {
                 let price = quoteResult.data['Global Quote'] && quoteResult.data['Global Quote']['05. price'];
                 price = parseFloat(price);
                 // console.log(timeSeriesData);
+
                 res.json({ ...overviewResult.data, timeSeriesData, price });
         } catch (error) {
                 console.error(error);

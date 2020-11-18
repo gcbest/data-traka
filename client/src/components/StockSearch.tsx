@@ -45,7 +45,7 @@ const StockSearch: React.FC = () => {
       </Box>
       {
         error && (
-          <Alert status="error">
+          <Alert status="error" width="400px" margin="auto">
             <AlertIcon />
             {`${error}`}
           </Alert>
