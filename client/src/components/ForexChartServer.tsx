@@ -106,14 +106,12 @@ const ForexChartServer: React.FC = (props: HighchartsReact.Props) => {
   }, []);
   /* eslint-disable-next-line implicit-arrow-linebreak */
   return (
-    <>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-      />
-    </>
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={options}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    />
   );
 };
 export default ForexChartServer;

@@ -84,9 +84,9 @@ const Stocks: React.FC = () => {
       </form>
       <PreviewDetails loading={loading} />
       <Flex justify="center">
-        <MotionBox variants={leftBoxVariants} initial="initial" animate="animate" margin="2rem 1rem">
+        <Box margin="2rem 1rem">
           <ForexChartServer />
-        </MotionBox>
+        </Box>
         <MotionBox variants={rightBoxVariants} initial="initial" animate="animate" margin="2rem 1rem">
           <GridView />
         </MotionBox>
