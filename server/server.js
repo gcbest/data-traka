@@ -40,10 +40,13 @@ app.get('/api/stock', async (req, res) => {
                 const quoteResult = await axios.get(quoteUrl);
                 // console.log(overviewResult.data);
                 // console.log(timeSeriesResult.data);
-                const timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
-                        time: entry[0],
-                        price: parseFloat(entry[1]['4. close']),
-                }));
+                let timeSeriesData = [];
+                if (timeSeriesResult.data['Time Series (1min)']) {
+                        timeSeriesData = Object.entries(timeSeriesResult.data['Time Series (1min)']).map(entry => ({
+                                time: entry[0],
+                                price: parseFloat(entry[1]['4. close']),
+                        }));
+                }
                 let price = quoteResult.data['Global Quote'] && quoteResult.data['Global Quote']['05. price'];
                 price = parseFloat(price);
                 // console.log(timeSeriesData);

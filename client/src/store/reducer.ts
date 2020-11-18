@@ -32,6 +32,7 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
     case FETCH_STOCK_ERROR:
       return {
         ...state,
+        loading: false,
         error: payload.message,
       };
 
