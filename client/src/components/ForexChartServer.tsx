@@ -31,7 +31,7 @@ const options: Highcharts.Options = {
   },
 
   title: {
-    text: 'CPU Usage',
+    text: 'Vital Price Tracking',
   },
 
   accessibility: {
@@ -81,7 +81,7 @@ const options: Highcharts.Options = {
   series: [
     {
       type: 'spline',
-      name: 'Usage',
+      name: 'Vitals',
       data: (function () {
         // generate an array of random data
         const data = [];

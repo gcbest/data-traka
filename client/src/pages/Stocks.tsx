@@ -6,11 +6,32 @@ import {
   Button, Flex, FormLabel, Input,
 } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import { queryStock, resetSearch } from '../store/actionCreators';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
 // import ForexChart from '../components/ForexChart';
 import ForexChartServer from '../components/ForexChartServer';
+
+const leftBoxVariants = {
+  initial: {
+    x: '-100vw',
+  },
+  animate: {
+    x: 5,
+    transition: { delay: 1, duration: 1.5 },
+  },
+};
+
+const rightBoxVariants = {
+  initial: {
+    x: '100vw',
+  },
+  animate: {
+    x: -5,
+    transition: { delay: 1, duration: 1.5 },
+  },
+};
 
 const Stocks: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,6 +47,8 @@ const Stocks: React.FC = () => {
     event.preventDefault();
     dispatch(queryStock(value));
   };
+
+  const MotionBox = motion.custom(Box);
 
   return (
     <>
@@ -61,12 +84,12 @@ const Stocks: React.FC = () => {
       </form>
       <PreviewDetails loading={loading} />
       <Flex justify="center">
-        <Box margin="2rem 1rem">
+        <MotionBox variants={leftBoxVariants} initial="initial" animate="animate" margin="2rem 1rem">
           <ForexChartServer />
-        </Box>
-        <Box margin="2rem 1rem">
+        </MotionBox>
+        <MotionBox variants={rightBoxVariants} initial="initial" animate="animate" margin="2rem 1rem">
           <GridView />
-        </Box>
+        </MotionBox>
       </Flex>
     </>
   );
