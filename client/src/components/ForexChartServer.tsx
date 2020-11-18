@@ -3,8 +3,8 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import io from 'socket.io-client';
 
-// const socket = io('http://localhost:3001', {
-const socket = io('https://data-traka.herokuapp.com/', {
+const socket = io('http://localhost:3001', {
+// const socket = io('https://data-traka.herokuapp.com/', {
   transports: ['websocket', 'polling'],
 });
 

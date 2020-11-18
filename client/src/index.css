@@ -21,30 +21,4 @@ code {
   stroke: #fff;
   fill: orange;
   stroke-dasharray: 185;
-  opacity: 10;
-  animation: animate 3s cubic-bezier(0, 0.23, 1, 0.1);
-}
-
-@keyframes animate {
-  0% {
-    opacity: 0;
-    fill: none;
-    stroke-dashoffset: 185;
-  }
-
-  30% {
-    opacity: 10;
-    fill: none;
-    stroke-dashoffset: 185;
-  }
-
-  90% {
-    fill: rgba(255, 255, 255, 0);
-  }
-
-  100% {
-    opacity: 10;
-    fill: rgba(255, 255, 255, 1);
-    stroke-dashoffset: 0;
-  }
 }
