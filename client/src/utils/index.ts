@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-
 const round2Decimals = (num: number): number => Math.round((num + Number.EPSILON) * 100) / 100;
 
 const convertCurrency: ConvertCurrency = (newCurrency, amount, convRate) => {

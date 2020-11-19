@@ -29,6 +29,7 @@ const StockSearch: React.FC = () => {
           w="50%"
           variant="outline"
           placeholder="e.g. IBM"
+          data-testid="stockQuery"
           value={value}
           onChange={handleChange}
         />
