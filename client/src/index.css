@@ -22,3 +22,7 @@ code {
   fill: orange;
   stroke-dasharray: 185;
 }
+
+.stock-details p {
+  margin: 0.5rem 0;
+}

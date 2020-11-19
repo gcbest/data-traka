@@ -42,10 +42,10 @@ const PreviewDetails: React.FC<Props> = ({ loading }) => {
         !loading && !error && previewData && (
           <Flex justify="center">
             <PreviewChart data={previewData.timeSeriesData} />
-            <Box margin="2rem">
+            <Box margin="2rem" className="stock-details">
 
-              <p className="symbol">{previewData?.Symbol}</p>
-              <p className="name">{previewData?.Name}</p>
+              <p className="symbol"><strong>{previewData?.Symbol}</strong></p>
+              <p className="name"><strong>{previewData?.Name}</strong></p>
               <CurrencyRadioBtns defaultValue={previewData?.Currency} />
               <p className="price">
                 Current Price: &nbsp;
