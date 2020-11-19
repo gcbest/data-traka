@@ -30,6 +30,9 @@ app.get('/api/stock', async (req, res) => {
                 const overviewResult = await axios.get(overviewQueryUrl);
                 const timeSeriesResult = await axios.get(timeSeriesQueryUrl);
                 const quoteResult = await axios.get(quoteUrl);
+                console.log('QUOTE RESULT', quoteResult);
+                console.log('TIME SERIES RESULT', timeSeriesResult);
+                console.log('OVERVIEW RESULT', overviewResult);
 
                 if (isStockNotFound(overviewResult, timeSeriesResult, quoteResult))
                         return res.status(500).send('Unable to find stock');
