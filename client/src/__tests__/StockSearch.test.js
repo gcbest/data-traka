@@ -19,8 +19,11 @@ function renderWithRedux(
 
 describe('StockSearch', () => {
   it('renders correctly', () => {
-    const { queryByTestId } = renderWithRedux(<StockSearch />);
+    const { queryByTestId, queryByText } = renderWithRedux(<StockSearch />);
     const searchInput = queryByTestId('stockQuery');
+    const searchBtn = queryByText('Search');
+
     expect(searchInput).toBeInTheDocument();
+    expect(searchBtn).toBeInTheDocument();
   });
 });
