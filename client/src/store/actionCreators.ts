@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import {
-  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS, RESET_SEARCH, SET_CURRENT_RATES, UPDATE_SAVED_STOCKS,
+  ADD_STOCK_TO_LIST, CONVERT_CURRENCY, FETCH_STOCK_ERROR, FETCH_STOCK_REQUEST, FETCH_STOCK_SUCCESS,
+  RESET_SEARCH, SET_CURRENT_RATES, UPDATE_SAVED_STOCKS,
 } from './actionTypes';
 
 export function fetchStockRequest(): IAction {
@@ -51,7 +52,7 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
         dispatch(fetchStockSuccess(previewData));
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         dispatch(fetchStockError('Unable to find stock'));
       });
   };
@@ -79,7 +80,6 @@ export function setConversionRates(convRates: IConvRates): IAction {
 }
 
 export function convertCurrency(newCurrency: Currency | string): IAction {
-  // const newAction: NewAction = { newCurrency: 'USD', convRates };
   return {
     type: CONVERT_CURRENCY,
     payload: { newCurrency },

@@ -1,16 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react';
 import {
-  Box, Heading, Flex, Text, useColorMode, Button, IconButton,
+  Box, Flex, useColorMode, IconButton,
 } from '@chakra-ui/core';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
-
-import { Link } from 'react-router-dom';
-
-interface Props {
-  children: any;
-}
 
 const pathVariants = {
   animate: {
@@ -53,11 +47,11 @@ function ToggleColorMode() {
   );
 }
 
-const MenuItems: React.FC<Props> = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    <Link to={`/${children}`}>{children}</Link>
-  </Text>
-);
+// const MenuItems: React.FC<Props> = ({ children }) => (
+//   <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+//     <Link to={`/${children}`}>{children}</Link>
+//   </Text>
+// );
 
 const Navbar: React.FC = (props) => {
   const [show, setShow] = React.useState(false);
@@ -76,9 +70,6 @@ const Navbar: React.FC = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        {/* <Heading as="h1" size="lg" letterSpacing="-.1rem">
-          <Link to="/">Data Traka</Link>
-        </Heading> */}
         <Title />
       </Flex>
 
@@ -102,7 +93,6 @@ const Navbar: React.FC = (props) => {
       >
         {/* <MenuItems>Docs</MenuItems> */}
         {/* <MenuItems>Examples</MenuItems> */}
-
         {/* <MenuItems>cpu-usage</MenuItems> */}
       </Box>
       <Box

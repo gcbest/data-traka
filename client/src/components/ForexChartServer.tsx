@@ -104,7 +104,6 @@ const ForexChartServer: React.FC = (props: HighchartsReact.Props) => {
   useEffect(() => () => {
     socket.close();
   }, []);
-  /* eslint-disable-next-line implicit-arrow-linebreak */
   return (
     <HighchartsReact
       highcharts={Highcharts}

@@ -7,30 +7,17 @@ const getQuoteUrl = symbol => `${AV_BASE_URL}&symbol=${symbol}&function=GLOBAL_Q
 
 const getSwopUrl = () => `${SWOP_BASE_URL}`;
 
-const getConversionRates = EurToUsd => ({
-        EurToUsd,
-        UsdToEur: 1 / EurToUsd,
-});
-
 const isEmptyObj = obj => Object.keys(obj).length === 0 && obj.constructor === Object;
 
-const convertCurrency = (currency, amount, EurToUsd) => {
-        const conversionRates = getConversionRates(EurToUsd);
-        switch (currency) {
-                case 'USD':
-                        return amount * conversionRates.EurToUsd;
-                case 'EUR':
-                        return amount * conversionRates.UsdToEur;
-                default:
-                        return amount * conversionRates.EurToUsd;
-        }
-};
+const isStockNotFound = (overviewResult, timeSeriesResult, quoteResult) =>
+        isEmptyObj(overviewResult.data) &&
+        !timeSeriesResult.data['Time Series (1min)'] &&
+        isEmptyObj(quoteResult.data['Global Quote']);
 
 module.exports = {
         getTimeSeriesUrl,
         getOverviewUrl,
         getQuoteUrl,
         getSwopUrl,
-        isEmptyObj,
-        convertCurrency,
+        isStockNotFound,
 };

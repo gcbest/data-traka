@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import PreviewDetails from '../components/PreviewDetails';
 import GridView from '../components/GridView';
-// import ForexChart from '../components/ForexChart';
 import ForexChartServer from '../components/ForexChartServer';
 import StockSearch from '../components/StockSearch';
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,8 +33,8 @@ const GridView: React.FC = () => {
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm('Are you sure you want to remove selected rows?')) {
-      localStorage.setItem('savedStocks', JSON.stringify(remainingRows));
       dispatch(updateSavedStocks(remainingRows));
+      localStorage.setItem('savedStocks', JSON.stringify(remainingRows));
     }
   };
 

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import {
-  Box, Button, Flex, HStack, Skeleton, Spacer,
+  Box, Button, Flex, HStack, Skeleton,
 } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveStock } from '../store/actionCreators';
@@ -23,7 +23,6 @@ const PreviewDetails: React.FC<Props> = ({ loading }) => {
   const handleClick = () => {
     if (!previewData) return;
     dispatch(saveStock(previewData));
-    // add to localStorage
     const newSavedStocks = [...savedStocks, previewData];
     localStorage.setItem('savedStocks', JSON.stringify(newSavedStocks));
   };

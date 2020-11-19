@@ -3,7 +3,7 @@ import React, { ReactText } from 'react';
 import {
   Box, Flex, useRadio, useRadioGroup,
 } from '@chakra-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { convertCurrency, setConversionRates } from '../store/actionCreators';
 
 // 1. Create a component that consumes the `useRadio` hook
@@ -48,7 +48,6 @@ interface Props {
 
 const CurrencyRadioBtns: React.FC<Props> = ({ defaultValue = 'USD' }) => {
   const options = ['USD', 'EUR'];
-  const stockPreview = useSelector((state: IState) => state.stockPreview);
   const dispatch = useDispatch();
 
   const handleChange = (nextValue: ReactText) => {
