@@ -34,6 +34,7 @@ const GridView: React.FC = () => {
     // eslint-disable-next-line no-restricted-globals
     if (confirm('Are you sure you want to remove selected rows?')) {
       dispatch(updateSavedStocks(remainingRows));
+      setNumRowsSelected(0);
       localStorage.setItem('savedStocks', JSON.stringify(remainingRows));
     }
   };
