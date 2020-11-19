@@ -74,6 +74,7 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
             stockPreview: {
               ...stockPreview,
               Currency: 'USD',
+              Price: utils.convertCurrency('USD', stockPreview.Price, convRates),
               '52WeekHigh': utils.convertCurrency('USD', stockPreview['52WeekHigh'], convRates),
               '52WeekLow': utils.convertCurrency('USD', stockPreview['52WeekLow'], convRates),
             },
@@ -81,11 +82,13 @@ const reducer: Reducer = (state: IState = initialState, { type, payload }: IActi
         case 'EUR':
           // eslint-disable-next-line no-case-declarations
           if (!stockPreview || !convRates) return state;
+          console.log(utils.convertCurrency('EUR', stockPreview.Price, convRates));
           return {
             ...state,
             stockPreview: {
               ...stockPreview,
               Currency: 'EUR',
+              Price: utils.convertCurrency('EUR', stockPreview.Price, convRates),
               '52WeekHigh': utils.convertCurrency('EUR', stockPreview['52WeekHigh'], convRates),
               '52WeekLow': utils.convertCurrency('EUR', stockPreview['52WeekLow'], convRates),
             },

@@ -30,8 +30,13 @@ const GridView: React.FC = () => {
     const selectedNodes = gridApi?.getSelectedNodes();
     const selectedSymbols: string[] = selectedNodes.map((node: any) => node?.data?.Symbol);
     const remainingRows = rowData.filter((row) => !selectedSymbols.includes(row.Symbol));
+    console.log(remainingRows);
+
     // eslint-disable-next-line no-restricted-globals
-    if (confirm('Are you sure you want to remove selected rows?')) { dispatch(updateSavedStocks(remainingRows)); }
+    if (confirm('Are you sure you want to remove selected rows?')) {
+      localStorage.setItem('savedStocks', JSON.stringify(remainingRows));
+      dispatch(updateSavedStocks(remainingRows));
+    }
   };
 
   return (
@@ -54,6 +59,7 @@ const GridView: React.FC = () => {
       >
         <AgGridColumn field="Symbol" sortable filter />
         <AgGridColumn field="Name" sortable filter />
+        <AgGridColumn field="Price" sortable filter />
         <AgGridColumn field="52WeekHigh" sortable />
         <AgGridColumn field="52WeekLow" sortable />
       </AgGridReact>

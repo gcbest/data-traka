@@ -36,7 +36,7 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
       .then((res) => res.json())
       .then((res) => {
         const {
-          Symbol, Name, Currency, timeSeriesData, price,
+          Symbol, Name, Currency, timeSeriesData, price: Price,
         } = res;
 
         const previewData: IStockPreview = {
@@ -45,7 +45,7 @@ export function queryStock(symbol: string): (dispatch: Dispatch) => void {
           Currency,
           '52WeekHigh': res['52WeekHigh'],
           '52WeekLow': res['52WeekLow'],
-          price,
+          Price,
           timeSeriesData,
         };
         dispatch(fetchStockSuccess(previewData));

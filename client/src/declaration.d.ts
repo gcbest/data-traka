@@ -19,7 +19,7 @@ interface IStockPreview {
   Currency: Currency
   '52WeekHigh': number
   '52WeekLow': number
-  price: number
+  Price: number
   timeSeriesData: ITimeSeriesData[]
 }
 

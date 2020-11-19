@@ -48,14 +48,17 @@ const PreviewDetails: React.FC<Props> = ({ loading }) => {
               <p className="name">{previewData?.Name}</p>
               <CurrencyRadioBtns defaultValue={previewData?.Currency} />
               <p className="price">
+                Current Price: &nbsp;
                 {previewData.Currency === 'USD' ? '$' : '€'}
-                {previewData.price}
+                {previewData.Price}
               </p>
               <p className="high">
+                52 Week High: &nbsp;
                 {previewData.Currency === 'USD' ? '$' : '€'}
                 {previewData?.['52WeekHigh']}
               </p>
               <p className="low">
+                52 Week Low: &nbsp;
                 {previewData.Currency === 'USD' ? '$' : '€'}
                 {previewData?.['52WeekLow']}
               </p>
