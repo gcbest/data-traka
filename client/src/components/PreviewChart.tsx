@@ -29,16 +29,9 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
       ],
       axes: [
         {
-          // type: 'time',
           type: 'category',
-          // nice: false,
           position: 'bottom',
-          // tick: {
-          //   count: agCharts.time.month,
-          // },
           label: {
-            // format: '%H:%M:%S',
-            // rotation: 330,
             formatter() {
               return '';
             },
@@ -47,42 +40,11 @@ const PreviewChart: React.FC<Props> = ({ data }) => {
         {
           type: 'number',
           position: 'left',
-          // label: {
-          //   formatter: function (params) {
-          //     return params.value + ' °C';
-          //   },
-          // },
         },
       ],
-      // axes: [
-      //   {
-      //     // type: 'time',
-      //     // nice: false,
-      //     position: 'bottom',
-      //     // tick: {
-      //     //   count: agCharts.time.month,
-      //     // },
-      //     label: {
-      //       // format: '%b %Y',
-      //       rotation: 330,
-      //     },
-      //   },
-      // {
-      //   type: 'number',
-      //   position: 'left',
-      //   label: {
-      //     formatter: function (params) {
-      //       return params.value + ' °C';
-      //     },
-      //   },
-      // },
-      // ],
       legend: { spacing: 40 },
     };
     setOptions(initialOptions);
-    // return () => {
-    //   cleanup;
-    // };
   }, [data]);
 
   return (
